@@ -1,19 +1,20 @@
-import { fetchCouponList } from '../../../services/coupon/index';
+import {
+  fetchCouponList
+} from '../../../services/coupon/index';
 
 Page({
   data: {
     status: 0,
-    list: [
-      {
-        text: '可使用',
+    list: [{
+        text: '待处理',
         key: 0,
       },
       {
-        text: '已使用',
+        text: '已通过',
         key: 1,
       },
       {
-        text: '已失效',
+        text: '已驳回',
         key: 2,
       },
     ],
@@ -49,24 +50,32 @@ Page({
       }
     }
     fetchCouponList(statusInFetch).then((couponList) => {
-      this.setData({ couponList });
+      this.setData({
+        couponList
+      });
     });
   },
 
   tabChange(e) {
-    const { value } = e.detail;
+    const {
+      value
+    } = e.detail;
 
-    this.setData({ status: value });
+    this.setData({
+      status: value
+    });
     this.fetchList(value);
   },
 
   goCouponCenterHandle() {
-    wx.showToast({ title: '去领券中心', icon: 'none' });
+    // wx.showToast({
+    //   title: '去领券中心',
+    //   icon: 'none'
+    // });
   },
 
   onPullDownRefresh_() {
-    this.setData(
-      {
+    this.setData({
         couponList: [],
       },
       () => {

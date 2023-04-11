@@ -1,4 +1,4 @@
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import { ServiceType, ServiceTypeDesc, ServiceStatus } from '../config';
 import { formatTime, getRightsDetail } from './api';
 

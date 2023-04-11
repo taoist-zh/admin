@@ -1,0 +1,25 @@
+<view class="result-container">
+  <t-search t-class="t-search" t-class-input-container="t-class__input-container" t-class-left="t-search__left-icon" t-class-input="t-search__input" value="{{keywords}}" leftIcon="" placeholder="电脑12" bind:submit="handleSubmit">
+    <t-icon slot="left-icon" prefix="wr" name="search" size="40rpx" color="#bbb" />
+  </t-search>
+  <filter wr-class="filter-container" bind:showFilterPopup="showFilterPopup">
+    <filter-popup show="{{show}}" slot="filterPopup" bind:showFilterPopupClose="showFilterPopupClose" bind:reset="reset" bind:confirm="confirm">
+      <view class="price-container" slot="filterSlot">
+        <view class="price-between">属性</view>
+        <view class="price-ipts-wrap">
+          <t-input type="number" t-class="price-ipt" t-class-input="t-class-input" placeholder="属性名" value="{{attrName}}" bindchange="onAttrNameAction" />
+          <view class="price-divided">-</view>
+          <t-input type="number" t-class="price-ipt" t-class-input="t-class-input" placeholder="属性值" value="{{attrVal}}" bindchange="onAttrValAction" />
+        </view>
+      </view>
+    </filter-popup>
+  </filter>
+  <view class="empty-wrap" wx:if="{{goodsList.length === 0 && hasLoaded}}">
+    <t-empty t-class="empty-tips" size="240rpx" description="暂无相关商品" />
+  </view>
+  <view class="category-goods-list" wx:if="{{equipmentsList.length}}">
+    <equipment-list equipmentsList="{{equipmentsList}}" />
+  </view>
+  <load-more wx:if="{{goodsList.length > 0}}" status="{{loadMoreStatus}}" no-more-text="没有更多了" />
+</view>
+<t-toast id="t-toast" />

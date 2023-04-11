@@ -4,8 +4,8 @@ import {
   fetchBusinessTime,
   fetchOrderDetail,
 } from '../../../services/order/orderDetail';
-import Toast from 'tdesign-miniprogram/toast/index';
-import { getAddressPromise } from '../../usercenter/address/list/util';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
+import { getAddressPromise } from '../../usercenter/user/list/util';
 
 Page({
   data: {

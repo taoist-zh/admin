@@ -1,4 +1,4 @@
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'tdesign-miniprogram/toast';
 import { fetchDeliveryAddress } from '../../../../services/address/fetchAddress';
 import { areaData } from '../../../../config/index';
 import { resolveAddress, rejectAddress } from './util';

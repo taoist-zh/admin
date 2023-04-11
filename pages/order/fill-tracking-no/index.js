@@ -1,5 +1,5 @@
 import Dialog from 'tdesign-miniprogram/dialog/index';
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import reasonSheet from '../components/reason-sheet/reasonSheet';
 import { getDeliverCompanyList, create, update } from './api';
 

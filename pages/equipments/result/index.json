@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "搜索",
+  "usingComponents": {
+    "t-search": "tdesign-miniprogram/search/search",
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "t-toast": "tdesign-miniprogram/toast/toast",
+    "filter": "/components/filter/index",
+    "filter-popup": "/components/filter-popup/index",
+    "load-more": "/components/load-more/index",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "equipment-list": "/components/equipment-list/index"
+  },
+  "onReachBottomDistance": 50
+}

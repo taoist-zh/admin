@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/home/home",
     "pages/usercenter/index",
     "pages/usercenter/person-info/index",
@@ -9,6 +10,8 @@
     "pages/goods/details/index",
     "pages/goods/category/index",
     "pages/goods/search/index",
+    "pages/equipments/search/index",
+    "pages/equipments/result/index",
     "pages/goods/result/index",
     "pages/cart/index",
     "pages/order/order-confirm/index",
@@ -28,7 +31,10 @@
     "pages/order/fill-tracking-no/index",
     "pages/order/delivery-detail/index",
     "pages/order/invoice/index",
-    "pages/usercenter/name-edit/index"
+    "pages/usercenter/name-edit/index",
+    "pages/equipment/list/list",
+    "pages/equipment/details/index",
+    "pages/register/index"
   ],
   "tabBar": {
     "custom": true,
@@ -39,25 +45,27 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页"
+        "text": "设备"
       },
       {
         "pagePath": "pages/goods/category/index",
         "text": "分类"
       },
       {
-        "pagePath": "pages/cart/index",
-        "text": "购物车"
-      },
-      {
         "pagePath": "pages/usercenter/index",
-        "text": "我的"
+        "text": "个人中心"
       }
     ]
   },
-  "requiredPrivateInfos": ["chooseAddress"],
+  "requiredPrivateInfos": [
+    "chooseAddress"
+  ],
   "lazyCodeLoading": "requiredComponents",
-  "usingComponents": {},
+  "usingComponents": {
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-button": "tdesign-miniprogram/button/button"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

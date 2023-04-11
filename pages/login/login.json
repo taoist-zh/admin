@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "t-toast": "tdesign-miniprogram/toast/toast"
+  }
+}

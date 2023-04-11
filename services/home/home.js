@@ -1,49 +1,44 @@
-import { config, cdnBase } from '../../config/index';
-
+import {
+  config,
+} from '../../config/index';
+import {
+  http
+} from "../request/request"
 /** 获取首页数据 */
 function mockFetchHome() {
-  const { delay } = require('../_utils/delay');
-  const { genSwiperImageList } = require('../../model/swiper');
+  const {
+    delay
+  } = require('../_utils/delay');
+
   return delay().then(() => {
     return {
-      swiper: genSwiperImageList(),
-      tabList: [
-        {
-          text: '精选推荐',
-          key: 0,
+      tabList: [{
+          text: '示波器',
+          typeId: 1001,
         },
         {
-          text: '夏日防晒',
-          key: 1,
+          text: '打印机',
+          typeId: 1002,
         },
         {
-          text: '二胎大作战',
-          key: 2,
+          text: '电脑',
+          typeId: 1003,
         },
         {
-          text: '人气榜',
-          key: 3,
+          text: '投影仪',
+          typeId: 1004,
         },
         {
-          text: '好评榜',
-          key: 4,
-        },
-        {
-          text: 'RTX 30',
-          key: 5,
-        },
-        {
-          text: '手机也疯狂',
-          key: 6,
+          text: '复印机',
+          typeId: 1005,
         },
       ],
-      activityImg: `${cdnBase}/activity/banner.png`,
     };
   });
 }
 
 /** 获取首页数据 */
-export function fetchHome() {
+export function getHomeData() {
   if (config.useMock) {
     return mockFetchHome();
   }

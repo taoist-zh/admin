@@ -1,7 +1,16 @@
 const statusMap = {
-  default: { text: '去使用', theme: 'primary' },
-  useless: { text: '已使用', theme: 'default' },
-  disabled: { text: '已过期', theme: 'default' },
+  default: {
+    text: '待处理',
+    theme: 'primary'
+  },
+  useless: {
+    text: '已处理',
+    theme: 'default'
+  },
+  disabled: {
+    text: '已驳回',
+    theme: 'default'
+  },
 };
 Component({
   options: {

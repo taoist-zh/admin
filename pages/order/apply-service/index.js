@@ -1,5 +1,5 @@
 import Dialog from 'tdesign-miniprogram/dialog/index';
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import { priceFormat } from '../../../utils/util';
 import { OrderStatus, ServiceType, ServiceReceiptStatus } from '../config';
 import reasonSheet from '../components/reason-sheet/reasonSheet';

@@ -1,7 +1,7 @@
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import { fetchSettleDetail } from '../../../services/order/orderConfirm';
 import { commitPay, wechatPayOrder } from './pay';
-import { getAddressPromise } from '../../usercenter/address/list/util';
+import { getAddressPromise } from '../../usercenter/user/list/util';
 
 const stripeImg = `https://cdn-we-retail.ym.tencent.com/miniapp/order/stripe.png`;
 

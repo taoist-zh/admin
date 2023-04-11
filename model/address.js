@@ -18,7 +18,7 @@ export function genAddress(id) {
     districtCode: '623026',
     detailAddress: `松日鼎盛大厦${id}层${id}号`,
     isDefault: `${id}` === '0' ? 1 : 0,
-    addressTag: id === 0 ? '' : '公司',
+    addressTag: id === 0 ? '' : '地址',
     latitude: '34.59103',
     longitude: '102.48699',
     storeId: null,

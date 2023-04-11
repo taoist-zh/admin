@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "t-collapse": "tdesign-miniprogram/collapse/collapse",
+    "t-collapse-panel": "tdesign-miniprogram/collapse-panel/collapse-panel",
+    "t-button": "tdesign-miniprogram/button/button"
+  }
+}

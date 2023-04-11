@@ -1,6 +1,6 @@
 import { fetchPerson } from '../../../services/usercenter/fetchPerson';
 import { phoneEncryption } from '../../../utils/util';
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 
 Page({
   data: {

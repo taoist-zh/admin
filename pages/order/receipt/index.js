@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import Dialog from 'tdesign-miniprogram/dialog/index';
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import { dispatchSupplementInvoice } from '../../../services/order/orderConfirm';
 
 const invoiceJson = {

@@ -1,4 +1,4 @@
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 
 const shortageImg =
   'https://cdn-we-retail.ym.tencent.com/miniapp/cart/shortage.png';

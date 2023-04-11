@@ -24,7 +24,11 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.26.1",
+    "axios-miniprogram-adapter": "^0.3.5",
     "dayjs": "^1.9.3",
+    "mobx-miniprogram": "^4.13.2",
+    "mobx-miniprogram-bindings": "^1.2.1",
     "tdesign-miniprogram": "^1.0.0",
     "tslib": "^1.11.1"
   },

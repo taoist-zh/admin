@@ -1,8 +1,8 @@
 import { getPermission } from '../../../../utils/getPermission';
 import { phoneRegCheck } from '../../../../utils/util';
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import { addressParse } from '../../../../utils/addressParse';
-import { resolveAddress, rejectAddress } from '../../address/list/util';
+import { resolveAddress, rejectAddress } from '../../user/list/util';
 
 Component({
   externalClasses: ['t-class'],

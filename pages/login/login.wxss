@@ -1,0 +1,82 @@
+/* pages/login/login.wxss */
+.login {
+  height: 100vh;
+  width: 100vw;
+  /* background-color: #c2c2c2; */
+  overflow: hidden;
+}
+
+.login-title {
+  height: 164rpx;
+  width: 600rpx;
+  margin: 150rpx auto 0 auto;
+  text-align: left;
+}
+
+.login-title-main {
+  font-size: 52rpx;
+  color: #575DFB;
+  font-weight: 700;
+}
+
+.login-title-sub {
+  font-size: 20rpx;
+  color: #000000;
+}
+
+.login-content {
+  width: 600rpx;
+  height: 750rpx;
+  margin: 0 auto;
+  border-radius: 20rpx;
+  box-shadow: 5rpx 5rpx 5rpx #ffffff;
+  background-color: #ffffff;
+}
+
+.l-input {
+  width: 600rpx;
+  height: 192rpx;
+  margin-bottom: 20rpx;
+}
+
+.l-input>label {
+  display: block;
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+}
+
+.l-input>view {
+  width: 100%;
+  height: 100rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  border: 4rpx solid #575DFB;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.l-icon {
+  position: relative;
+  top: -26rpx;
+  display: inline-block;
+  width: 40rpx;
+  height: 100%;
+}
+
+.l-input input {
+  display: inline-block;
+  width: calc(100% - 160rpx);
+  height: 98rpx;
+  margin-left: 10rpx;
+}
+
+
+.t-button--primary {
+  border-radius: 20rpx !important;
+}
+
+.go-register {
+  margin-bottom: 30rpx;
+  font-size: 28rpx;
+  color: #575DFB;
+}

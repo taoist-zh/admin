@@ -1,4 +1,4 @@
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import { fetchPromotion } from '../../services/promotion/detail';
 
 Page({

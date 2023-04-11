@@ -1,4 +1,4 @@
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import { fetchGood } from '../../../services/good/fetchGood';
 import { fetchActivityList } from '../../../services/activity/fetchActivityList';
 import {

@@ -1,0 +1,70 @@
+<!--pages/equipment/details/index.wxml-->
+<view class="main">
+  <view class="main-img">
+    <image src="https://img12.360buyimg.com/n1/jfs/t1/187616/29/29241/32928/636e6c8bEa04b9c0c/7c285710cb64c679.jpg.avif" mode="" />
+  </view>
+  <view class="main-container">
+    <view class="main-container-card">
+      <view>
+        <text class="main-container-title">xxx设备</text>
+      </view>
+      <view>
+        <text class="main-container-subtitle">一个什么版本什么的设备</text>
+      </view>
+      <view class="main-container-title-status">
+        使用中
+      </view>
+    </view>
+    <view class="main-container-card">
+      <view class="user">
+        <text class="user-title">当前所属人</text><text class="user-name">章三</text>
+      </view>
+    </view>
+    <view class="main-container-card">
+      <view class="attr">
+        <view>
+          <text class="attr-title">属性名称1</text>
+        </view>
+        <view>
+          <text class="attr-des">属性值1</text>
+        </view>
+        <view class="attr-line" />
+      </view>
+      <view class="attr">
+        <view>
+          <text class="attr-title">属性名称1</text>
+        </view>
+        <view>
+          <text class="attr-des">属性值1</text>
+        </view>
+        <view class="attr-line" />
+      </view>
+      <view class="attr">
+        <view>
+          <text class="attr-title">属性名称1</text>
+        </view>
+        <view>
+          <text class="attr-des">属性值1</text>
+        </view>
+        <view class="attr-line" />
+      </view>
+      <view class="attr">
+        <view>
+          <text class="attr-title">属性名称1</text>
+        </view>
+        <view>
+          <text class="attr-des">属性值1</text>
+        </view>
+        <view class="attr-line" />
+      </view>
+    </view>
+  </view>
+  <view class="main-action">
+
+    <view>
+      <t-button theme="primary" size="small">申请使用</t-button>
+      <t-button theme="primary" size="small">申请维修</t-button>
+      <t-button theme="primary" size="small">申请报废</t-button>
+    </view>
+  </view>
+</view>

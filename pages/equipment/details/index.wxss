@@ -1,0 +1,110 @@
+/* pages/equipment/details/index.wxss */
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(to top, rgba(249, 249, 251, 0), rgba(227, 227, 255, 1));
+}
+
+.main-img image {
+  width: 100%;
+}
+
+.main-action {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+}
+
+.main-container {
+  width: 90%;
+  height: calc(100% - 500rpx);
+  margin: 10rpx auto 0 auto;
+
+}
+
+.main-container-card {
+  position: relative;
+  padding: 26rpx;
+  background-color: #fff;
+  border-radius: 15rpx;
+  margin-bottom: 20rpx;
+}
+
+.main-container-title {
+  font-size: 30rpx;
+  font-weight: 500;
+
+}
+
+.main-container-title-status {
+  position: absolute;
+  padding: 6rpx;
+  font-size: 22rpx;
+  background: #fe8b27;
+  border-radius: 6rpx;
+  color: #ffdb95;
+  top: 45rpx;
+  right: 20rpx;
+}
+
+.main-container-subtitle {
+  font-size: 20rpx;
+  color: #5f5d5d;
+}
+
+.main-action>view {
+  position: relative;
+  top: 50%;
+  width: 520rpx;
+  margin: 0 auto;
+  transform: translateY(-50%);
+}
+
+.main-action button {
+  margin-right: 20rpx;
+  font-weight: 400;
+  background-color: #5775ff;
+  border-color: #6e88ff !important;
+}
+
+.attr {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.attr-title {
+  font-size: 28rpx;
+
+}
+
+.attr-des {
+  font-size: 24rpx;
+  color: #5f5d5d;
+}
+
+.attr-line {
+  position: absolute;
+  bottom: -10rpx;
+  width: 100%;
+  height: 1rpx;
+  background-color: rgb(230, 225, 225, .3);
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-title {
+  font-size: 28rpx;
+}
+
+.user-name {
+  font-size: 28rpx;
+  color: #6e88ff;
+}

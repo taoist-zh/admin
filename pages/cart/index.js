@@ -1,5 +1,5 @@
 import Dialog from 'tdesign-miniprogram/dialog/index';
-import Toast from 'tdesign-miniprogram/toast/index';
+import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
 import { fetchCartGroupData } from '../../services/cart/cart';
 
 Page({

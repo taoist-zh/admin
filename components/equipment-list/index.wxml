@@ -1,0 +1,42 @@
+<!--components/equipment-list/index.wxml-->
+<view>
+  <wxs module="tool">
+    module.exports = {
+      getStatus: function (status) {
+
+        var enumList = {
+          "0": "可使用",
+          "1": "使用中",
+          "2": "维修中",
+          "3": "已报废",
+        }
+
+        return enumList[status.toString()];
+      }
+    }
+  </wxs>
+  <block wx:for="{{equipmentsList}}" wx:key="index" wx:for-item="item">
+    <view class="list-card" bindtap="handleDetail" data-id="{{item.id}}">
+      <view class="card-left">
+        <image src="{{item.imgUrl}}" mode="" />
+      </view>
+      <view class="card-right">
+        <view class="card-title">
+          {{item.title}}
+        </view>
+        <view class="card-subtitle">
+          {{item.description}}
+        </view>
+        <view class="card-action">
+          <view>用</view>
+          <view>申请使用</view>
+        </view>
+        <view class="{{'status-tag status-'+item.status}}">
+          {{tool.getStatus(item.status)}}
+        </view>
+      </view>
+
+    </view>
+  </block>
+  sss、
+</view>

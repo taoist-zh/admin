@@ -1,0 +1,47 @@
+<!--pages/login/login.wxml-->
+<view class="login">
+
+  <view class="login-title">
+    <view class="login-title-main">
+      实验室设备管理系统
+    </view>
+    <view class="login-title-sub">
+      一个便捷、高效的设备管理系统
+    </view>
+  </view>
+  <view class="login-content">
+    <view class="l-input">
+      <label for="username">用户名</label>
+      <view>
+        <view class="l-icon">
+          <t-icon name="user" size="48rpx" data-name="user" color="#575DFB" />
+        </view>
+        <input type="text" placeholder="请输入用户名 " required="required" value="{{userName}}" bindchange="inputChange" data-id="userName" />
+
+      </view>
+    </view>
+    <view class="l-input">
+      <label for="password">密码</label>
+      <view>
+        <view class="l-icon">
+          <t-icon name="lock-on" size="48rpx" data-name="lock-on" color="#575DFB" />
+        </view>
+        <input type="password" placeholder="请输入密码" required="required" value="{{passWord}}" bindchange="inputChange" data-id="passWord" />
+
+      </view>
+    </view>
+    <view class="l-input">
+      <label for="password">确认密码</label>
+      <view>
+        <view class="l-icon">
+          <t-icon name="lock-on" size="48rpx" data-name="lock-on" color="#575DFB" />
+        </view>
+        <input type="password" placeholder="请再次输入密码" required="required" value="{{confirmPassWord}}" bindchange="inputChange" data-id="confirmPassWord" />
+      </view>
+    </view>
+    <t-button theme="primary" size="large" block bind:tap="register">注册</t-button>
+
+    <t-toast id="t-toast" />
+
+  </view>
+</view>

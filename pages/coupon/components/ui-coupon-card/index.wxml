@@ -40,7 +40,7 @@
 			<text class="coupon-title">{{title}}</text>
 			<view class="coupon-time">{{timeLimit}}</view>
 			<view class="coupon-desc">
-				<view wx:if="{{ruleDesc}}">{{ruleDesc}}</view>
+				<!-- <view wx:if="{{ruleDesc}}">{{ruleDesc}}</view> -->
 			</view>
 		</view>
 		<view class="wr-coupon__right--oper">
