@@ -1,6 +1,10 @@
-import { fetchPerson } from '../../../services/usercenter/fetchPerson';
-import { phoneEncryption } from '../../../utils/util';
-import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
+import {
+  fetchPerson
+} from '../../../services/usercenter/fetchPerson';
+import {
+  phoneEncryption
+} from '../../../utils/util';
+import Toast from 'tdesign-miniprogram/toast/index';
 
 Page({
   data: {
@@ -11,8 +15,7 @@ Page({
       phoneNumber: '',
     },
     showUnbindConfirm: false,
-    pickerOptions: [
-      {
+    pickerOptions: [{
         name: '男',
         code: '1',
       },
@@ -38,9 +41,15 @@ Page({
       });
     });
   },
-  onClickCell({ currentTarget }) {
-    const { dataset } = currentTarget;
-    const { nickName } = this.data.personInfo;
+  onClickCell({
+    currentTarget
+  }) {
+    const {
+      dataset
+    } = currentTarget;
+    const {
+      nickName
+    } = this.data.personInfo;
 
     switch (dataset.type) {
       case 'gender':
@@ -67,9 +76,10 @@ Page({
     });
   },
   onConfirm(e) {
-    const { value } = e.detail;
-    this.setData(
-      {
+    const {
+      value
+    } = e.detail;
+    this.setData({
         typeVisible: false,
         'personInfo.gender': value,
       },
@@ -91,11 +101,16 @@ Page({
           sizeType: ['compressed'],
           sourceType: ['album', 'camera'],
           success: (res) => {
-            const { path, size } = res.tempFiles[0];
+            const {
+              path,
+              size
+            } = res.tempFiles[0];
             if (size <= 10485760) {
               resolve(path);
             } else {
-              reject({ errMsg: '图片大小超出限制，请重新上传' });
+              reject({
+                errMsg: '图片大小超出限制，请重新上传'
+              });
             }
           },
           fail: (err) => reject(err),

@@ -1,7 +1,7 @@
 import {
   fetchUserCenter
 } from '../../services/usercenter/fetchUsercenter';
-import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
+import Toast from 'tdesign-miniprogram/toast/index';
 
 const menuData = [{
     title: '用户管理',
@@ -92,6 +92,7 @@ Page({
 
   fetUseriInfoHandle() {
     fetchUserCenter().then(
+
       ({
         userInfo,
         countsData,
@@ -129,7 +130,7 @@ Page({
     const {
       type
     } = currentTarget.dataset;
-
+    console.log(type)
     switch (type) {
       case 'userlist': {
         wx.navigateTo({
@@ -139,7 +140,7 @@ Page({
       }
       case 'userInfo': {
         wx.navigateTo({
-          url: '/pages/usercenter/user/list/index'
+          url: "/pages/usercenter/person-info/index",
         });
         break;
 

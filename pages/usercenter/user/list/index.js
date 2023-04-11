@@ -1,8 +1,15 @@
 /* eslint-disable no-param-reassign */
-import { fetchDeliveryAddressList } from '../../../../services/address/fetchAddress';
+import {
+  fetchDeliveryAddressList
+} from '../../../../services/address/fetchAddress';
 import Toast from 'tdesign-miniprogram/toast';
-import { resolveAddress, rejectAddress } from './util';
-import { getAddressPromise } from '../edit/util';
+import {
+  resolveAddress,
+  rejectAddress
+} from './util';
+import {
+  getAddressPromise
+} from '../edit/util';
 
 Page({
   data: {
@@ -18,7 +25,9 @@ Page({
   hasSelect: false,
 
   onLoad(query) {
-    const { selectMode = '', isOrderSure = '', id = '' } = query;
+    const {
+      selectMode = '', isOrderSure = '', id = ''
+    } = query;
     this.setData({
       isOrderSure: !!isOrderSure,
       id,
@@ -36,14 +45,18 @@ Page({
     }
   },
   getAddressList() {
-    const { id } = this.data;
+    const {
+      id
+    } = this.data;
     fetchDeliveryAddressList().then((addressList) => {
       addressList.forEach((address) => {
         if (address.id === id) {
           address.checked = true;
         }
       });
-      this.setData({ addressList });
+      this.setData({
+        addressList
+      });
     });
   },
   getWXAddressHandle() {
@@ -66,7 +79,9 @@ Page({
           icon: '',
           duration: 1000,
         });
-        const { length: len } = this.data.addressList;
+        const {
+          length: len
+        } = this.data.addressList;
         this.setData({
           [`addressList[${len}]`]: {
             name: res.userName,
@@ -80,10 +95,17 @@ Page({
       },
     });
   },
-  confirmDeleteHandle({ detail }) {
-    const { id } = detail || {};
+  confirmDeleteHandle({
+    detail
+  }) {
+    const {
+      id
+    } = detail || {};
     if (id !== undefined) {
-      this.setData({ deleteID: id, showDeleteConfirm: true });
+      this.setData({
+        deleteID: id,
+        showDeleteConfirm: true
+      });
       Toast({
         context: this,
         selector: '#t-toast',
@@ -102,31 +124,47 @@ Page({
     }
   },
   deleteAddressHandle(e) {
-    const { id } = e.currentTarget.dataset;
+    const {
+      id
+    } = e.currentTarget.dataset;
     this.setData({
       addressList: this.data.addressList.filter((address) => address.id !== id),
       deleteID: '',
       showDeleteConfirm: false,
     });
   },
-  editAddressHandle({ detail }) {
+  editAddressHandle({
+    detail
+  }) {
     this.waitForNewAddress();
 
-    const { id } = detail || {};
-    wx.navigateTo({ url: `/pages/usercenter/address/edit/index?id=${id}` });
+    const {
+      id
+    } = detail || {};
+    wx.navigateTo({
+      url: `/pages/usercenter/user/edit/index?id=${id}`
+    });
   },
-  selectHandle({ detail }) {
+  selectHandle({
+    detail
+  }) {
     if (this.selectMode) {
       this.hasSelect = true;
       resolveAddress(detail);
-      wx.navigateBack({ delta: 1 });
+      wx.navigateBack({
+        delta: 1
+      });
     } else {
-      this.editAddressHandle({ detail });
+      this.editAddressHandle({
+        detail
+      });
     }
   },
   createHandle() {
     this.waitForNewAddress();
-    wx.navigateTo({ url: '/pages/usercenter/address/edit/index' });
+    wx.navigateTo({
+      url: '/pages/usercenter/address/edit/index'
+    });
   },
 
   waitForNewAddress() {

@@ -1,7 +1,7 @@
 import {
   handleRegister
 } from "../../services/register/index"
-import Toast from 'pages/usercenter/address/edit//node_modules/tdesign-miniprogram/toast/index';
+import Toast from 'tdesign-miniprogram/toast/index';
 
 // pages/login/login.js
 Page({
