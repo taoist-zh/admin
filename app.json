@@ -48,8 +48,8 @@
         "text": "设备"
       },
       {
-        "pagePath": "pages/goods/category/index",
-        "text": "分类"
+        "pagePath": "pages/coupon/coupon-list/index",
+        "text": "管理"
       },
       {
         "pagePath": "pages/usercenter/index",

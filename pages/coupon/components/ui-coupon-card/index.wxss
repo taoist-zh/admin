@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  color: #fa4126;
+  color: #185bc0;
   overflow: hidden;
   position: relative;
 }
@@ -60,7 +60,7 @@
 .wr-coupon__left--desc {
   font-size: 24rpx;
   line-height: 32rpx;
-  color: #fa4126;
+  color: #185bc0;
 }
 
 .theme-weak .wr-coupon__left--desc {
@@ -139,8 +139,8 @@
   opacity: 0.9;
   font-size: 20rpx;
   line-height: 28rpx;
-  color: #fa4126;
-  border: 0.5px solid #fa4126;
+  color: #185bc0;
+  border: 0.5px solid #185bc0;
   box-sizing: border-box;
   transform: rotate(45deg);
 }
@@ -154,11 +154,22 @@
   background-size: 100% 100%;
 }
 
+/* 驳回 */
 .wr-coupon__seal.seal-useless {
-  background-image: url('https://cdn-we-retail.ym.tencent.com/miniapp/coupon/seal-used.png');
-  /* 驳回 */
+  background-image: url('https://pic.616pic.com/ys_bnew_img/00/36/42/66T34Rk5V4.jpg');
+
 }
 
+/* 已通过 */
 .wr-coupon__seal.seal-disabled {
-  background-image: url('https://cdn-we-retail.ym.tencent.com/miniapp/coupon/coupon-expired.png');
+  background-image: url('https://img0.baidu.com/it/u=678019853,2031181091&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=438');
+}
+
+.img image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.img {
+  padding: 20rpx 10rpx 10rpx 2rpx;
 }

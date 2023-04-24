@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    role: "admin",
   },
 
   /**
@@ -62,5 +62,20 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  applyUse() {
+    console.log("申请使用")
+  },
+  applyMaintenance() {
+    console.log("申请维修")
+  },
+  applyUnserviceable() {
+    console.log("申请报废")
+  },
+  passApply() {
+    console.log("通过申请")
+  },
+  rejectApply() {
+    console.log("驳回申请")
   }
 })

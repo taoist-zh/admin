@@ -4,8 +4,18 @@ import {
 
 Page({
   data: {
+    role: "admin",
     status: 0,
-    list: [{
+    list1: [{
+        text: '未处理',
+        key: 0,
+      },
+      {
+        text: '已处理',
+        key: 1,
+      }
+    ],
+    list2: [{
         text: '待处理',
         key: 0,
       },
@@ -19,13 +29,17 @@ Page({
       },
     ],
 
-    couponList: [],
+    couponList: [
+
+    ],
   },
 
   onLoad() {
     this.init();
   },
-
+  onShow() {
+    this.getTabBar().init();
+  },
   init() {
     this.fetchList();
   },
@@ -67,11 +81,10 @@ Page({
     this.fetchList(value);
   },
 
-  goCouponCenterHandle() {
-    // wx.showToast({
-    //   title: '去领券中心',
-    //   icon: 'none'
-    // });
+  goHomeHandle() {
+    wx.switchTab({
+      url: '/pages/home/home',
+    })
   },
 
   onPullDownRefresh_() {

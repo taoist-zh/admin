@@ -181,7 +181,7 @@ Page({
 
   jumpAllOrder() {
     wx.navigateTo({
-      url: '/pages/order/order-list/index'
+      url: '/pages/coupon/coupon-list/index'
     });
   },
 

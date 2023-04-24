@@ -58,13 +58,60 @@
         <view class="attr-line" />
       </view>
     </view>
+    <view class="main-container-card records-main">
+      <view class="records-title">
+        <text>使用记录</text>
+        <text>开始时间</text>
+        <text>结束时间</text>
+      </view>
+
+      <view class="attr">
+        <view class="record-item">
+          <text class="attr-title">章三</text>
+        </view>
+        <view class="record-item">
+          <text class="attr-des">2023-01-02</text>
+        </view>
+        <view class="record-item1">
+          <text class="attr-des">2023-05-03</text>
+        </view>
+        <view class="attr-line" />
+      </view>
+      <view class="attr">
+        <view class="record-item">
+          <text class="attr-title">章三</text>
+        </view>
+        <view class="record-item">
+          <text class="attr-des">2023-01-02</text>
+        </view>
+        <view class="record-item1">
+          <text class="attr-des">2023-05-03</text>
+        </view>
+        <view class="attr-line" />
+      </view>
+
+
+    </view>
   </view>
   <view class="main-action">
 
-    <view>
-      <t-button theme="primary" size="small">申请使用</t-button>
-      <t-button theme="primary" size="small">申请维修</t-button>
-      <t-button theme="primary" size="small">申请报废</t-button>
+    <view wx:if="{{role=='student'}}">
+      <t-button theme="primary" size="small" bindtap="applyUse">申请使用</t-button>
+      <t-button theme="primary" size="small" bindtap="applyMaintenance">申请维修</t-button>
+      <t-button theme="primary" size="small" bindtap="applyUnserviceable">申请报废</t-button>
+    </view>
+    <view wx:if="{{role=='admin'}}">
+      <text class="applyUser">
+        <text>申请人: </text>
+        <text>张三</text>
+      </text>
+      <text class="applyStatus">
+        <text>申请: </text>
+        <text>维修</text>
+      </text>
+      <t-button theme="primary" size="small" bindtap="passApply">通过</t-button>
+      <t-button theme="danger" size="small" bindtap="rejectApply">驳回</t-button>
+
     </view>
   </view>
 </view>

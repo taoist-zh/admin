@@ -6,13 +6,9 @@ export default [{
   {
     icon: 'sort',
     text: '管理',
-    url: 'pages/goods/category/index',
+    url: "pages/coupon/coupon-list/index",
   },
-  // {
-  //   icon: 'cart',
-  //   text: '购物车',
-  //   url: 'pages/cart/index',
-  // },
+
   {
     icon: 'person',
     text: '个人中心',

@@ -1,45 +1,20 @@
-<!-- 优惠券 -->
 <view class="coupon-card-wrap">
   <coupon-card couponDTO="{{detail}}" />
 </view>
 <!-- 说明 -->
 <view class="desc-wrap">
   <t-cell-group t-class="desc-group-wrap">
-    <t-cell
-      wx:if="{{detail && detail.desc}}"
-      t-class="t-class-cell"
-      t-class-title="t-class-title"
-      t-class-note="t-class-note"
-      title="规则说明"
-      note="{{detail && detail.desc}}"
-    />
-    <t-cell
-      wx:if="{{detail && detail.timeLimit}}"
-      t-class="t-class-cell"
-      t-class-title="t-class-title"
-      t-class-note="t-class-note"
-      title="有效时间"
-      note="{{detail && detail.timeLimit}}"
-    />
-    <t-cell
-      wx:if="{{detail && detail.storeAdapt}}"
-      t-class="t-class-cell"
-      t-class-title="t-class-title"
-      t-class-note="t-class-note"
-      title="适用范围"
-      note="{{detail && detail.storeAdapt}}"
-    />
-    <t-cell
-      wx:if="{{detail && detail.useNotes}}"
-      t-class="t-class-cell"
-      t-class-title="t-class-title"
-      t-class-note="t-class-note"
-      title="使用须知"
-      note="{{detail && detail.useNotes}}"
-    />
+    <t-cell wx:if="{{detail && detail.desc}}" t-class="t-class-cell" t-class-title="t-class-title" t-class-note="t-class-note" title="当前状态" note="{{'使用中'}}" />
+    <t-cell wx:if="{{detail && detail.timeLimit}}" t-class="t-class-cell" t-class-title="t-class-title" t-class-note="t-class-note" title="申请日期" note="2023-01-01" />
+    <t-cell wx:if="{{detail && detail.storeAdapt}}" t-class="t-class-cell" t-class-title="t-class-title" t-class-note="t-class-note" title="申请人" note="李四" />
+    <t-cell wx:if="{{detail && detail.useNotes}}" t-class="t-class-cell" t-class-title="t-class-title" t-class-note="t-class-note" title="备注/驳回原因" note="11111111" />
   </t-cell-group>
-  <!-- 查看可用商品 -->
+  <view>
+    <t-textarea t-class="external-class" label="驳回原因" placeholder="请填写驳回原因" disableDefaultPadding="{{true}}" />
+  </view>
+
   <view class="button-wrap">
-    <t-button shape="round" block bindtap="navGoodListHandle"> 查看可用商品 </t-button>
+    <t-button shape="round" block bindtap="" style="margin-bottom: 10rpx;" theme="primary"> 通过</t-button>
+    <t-button shape="round" block bindtap=""> 驳回 </t-button>
   </view>
 </view>
