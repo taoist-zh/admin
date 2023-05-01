@@ -47,7 +47,7 @@ export const login = (data) => {
 
   } else {
     return http({
-      url: '/api/admin/base/open/login',
+      url: '/user/login',
       method: "post",
       data
 

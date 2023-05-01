@@ -92,13 +92,13 @@ Page({
       username: this.data.userName,
       password: this.data.passWord
     }).then((res) => {
-      if (res.data.code == 1000) {
+      if (res.data.code == 200) {
         Toast({
           context: this,
           selector: '#t-toast',
           message: '登陆成功',
         });
-        this.setToken("token======")
+        wx.setStorageSync("token", res.data.data.token)
         setTimeout(() => {
           wx.switchTab({
             url: "/pages/home/home"

@@ -96,7 +96,7 @@ Page({
         username: this.data.userName,
         password: this.data.passWord
       }).then((res) => {
-        if (res.data.code == 1000) {
+        if (res.data.code == 200) {
           Toast({
             context: this,
             selector: '#t-toast',

@@ -1,6 +1,9 @@
 import {
   config,
 } from '../../config/index';
+import {
+  http
+} from "../request/request"
 
 function mockFetchRegister(data) {
   return new Promise((resolve) => {
@@ -25,7 +28,7 @@ export const handleRegister = (data) => {
 
   } else {
     return http({
-      url: '/api/admin/base/open/login',
+      url: '/user',
       method: "post",
       data
 

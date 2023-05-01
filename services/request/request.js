@@ -1,22 +1,35 @@
 //http.js
-import axios from 'axios'
-import mpAdapter from 'axios-miniprogram-adapter'
-axios.defaults.adapter = mpAdapter
+import axios from 'axios';
+import mpAdapter from 'axios-miniprogram-adapter';
+axios.defaults.adapter = mpAdapter;
 
 // import { loginRedirect } from './util'
 // import { store } from '../store/index'
-let baseURL = 'http://123.60.190.197'
-let headers = {
-
-}
+const baseURL = 'http://localhost:3000/api';
+const headers = {};
 export const http = axios.create({
   baseURL,
   headers,
-})
-// const requestInterceptor = config => {
-//   config.headers.token = wx.getStorageSync('token')
-//   return config
-// }
+});
+const requestInterceptor = (config) => {
+  if (config.url == '/user/login' || config.url == '/user/register') {
+    return config;
+  }
+  if (!config.headers.authorization) {
+    if (wx.getStorageSync('token')) {
+      config.headers.authorization = wx.getStorageSync('token');
+    } else {
+      wx.redirectTo({
+        url: '/pages/login',
+      });
+    }
+  } else {
+    return config;
+  }
+
+  // return config
+};
+
 // const responseInterceptor = response => {
 //   console.log(response.config.url, response)
 //   if (response.data.code === 1) {
@@ -56,6 +69,6 @@ export const http = axios.create({
 //   }
 // }
 // //请求拦截器
-// http.interceptors.request.use(requestInterceptor)
+http.interceptors.request.use(requestInterceptor);
 // //响应拦截器
 // http.interceptors.response.use(responseInterceptor, responseError)
