@@ -102,3 +102,24 @@ page {
 .t-dropdown-menu {
   background: #f5f5f5 !important;
 }
+
+.block {
+  position: relative;
+  width: 80vw;
+  height: 70vh;
+  background: #fff;
+  border-radius: 16rpx;
+}
+
+.close-btn {
+  position: absolute;
+  left: 50%;
+  margin-left: -32rpx;
+  bottom: calc(-1 * (48rpx + 64rpx));
+}
+
+.tag-li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx;
+}

@@ -11,12 +11,47 @@
 <view class="home-page-container">
   <view class="home-page-tabs">
     <t-tabs t-class="t-tabs" t-class-active="tabs-external__active" t-class-item="tabs-external__item" defaultValue="{{0}}" space-evenly="{{false}}" bind:change="tabChangeHandle">
-      <t-tab-panel wx:for="{{tabList}}" wx:for-index="index" wx:key="index" label="{{item.text}}" value="{{index}}" />
+      <t-tab-panel wx:for="{{tabList}}" wx:for-index="index" wx:key="index" label="{{item.name}}" value="{{index}}" />
     </t-tabs>
   </view>
+  <view style="margin:0 auto;width: 380rpx;">
+    <t-button theme="primary" style="margin-right: 10rpx;" bindtap="showAddDevice">新增设备</t-button>
+    <t-button theme="primary" bindtap="handlePopup">分类管理</t-button>
+  </view>
+  <!-- 操作弹出层 -->
+  <t-popup visible="{{addTagVisible}}" bind:visible-change="onVisibleChange" placement="center">
+
+    <view class="block">
+
+      <view>
+        <view style="line-height: 50rpx;text-align: center;padding: 10rpx;">
+          <text style="margin-right: 20rpx;">所有分类</text>
+          <t-button theme="primary" size="extra-small" bindtap="addTabList">新增</t-button>
+        </view>
+        <view style="display: flex;justify-content: space-between;" wx:if="{{isShowAddTab}}">
+          <t-input value="{{newTabName}}" borderless="{{true}}" style="border: 2rpx solid rgba(220,220,220,1);border-radius: 12rpx;height: 0rpx; margin-right: 10rpx;" bindchange="addTabInputChange" />
+          <t-button size="extra-small" theme="primary" style="margin-right: 10rpx;" bindtap="addTab">确定</t-button>
+          <t-button size="extra-small" data-id="{{item.id}}" bindtap="cancelAdd">取消</t-button>
+        </view>
+        <view class="tag-ul">
+          <view class="tag-li" wx:for="{{tabList}}" wx:item="item" wx:key="index">
+            <!-- <text>{{item.name}}</text> -->
+            <t-input value="{{item.name}}" borderless="{{true}}" style="border: 2rpx solid rgba(220,220,220,1);border-radius: 12rpx;height: 0rpx; margin-right: 10rpx;" data-index="{{index}}" bindchange="tabInputChange" />
+            <view>
+              <t-button size="extra-small" theme="primary" style="margin-right: 10rpx;" data-id="{{item.id}}" data-index="{{index}}" bindtap="updatTab">修改</t-button>
+              <t-button size="extra-small" data-id="{{item.id}}" bindtap="delTab" data-index="{{index}}">删除</t-button>
+            </view>
+
+          </view>
+        </view>
+      </view>
+      <t-icon t-class="close-btn" name="close-circle" size="32" color="#fff" bind:tap="onClose" />
+    </view>
+  </t-popup>
   <!-- 状态选择 -->
   <t-dropdown-menu>
     <t-dropdown-item options="{{product.options}}" value="{{product.value}}" bindchange="onChange" />
   </t-dropdown-menu>
   <equipment-list equipmentsList="{{equipmentsListFi}}" />
+  <t-toast id="t-toast" />
 </view>

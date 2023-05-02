@@ -16,13 +16,13 @@
     }
   </wxs>
   <block wx:for="{{equipmentsList}}" wx:key="index" wx:for-item="item">
-    <view class="list-card" bindtap="handleDetail" data-id="{{item.id}}">
+    <view class="list-card" bindtap="handleDetail" data-item="{{item}}">
       <view class="card-left">
         <image src="{{item.imgUrl}}" mode="" />
       </view>
       <view class="card-right">
         <view class="card-title">
-          {{item.title}}
+          {{item.name}}
         </view>
         <view class="card-subtitle">
           {{item.description}}

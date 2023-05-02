@@ -99,6 +99,7 @@ Page({
           message: '登陆成功',
         });
         wx.setStorageSync("token", res.data.data.token)
+        wx.setStorageSync("userInfo", JSON.stringify(res.data.data.userInfo))
         setTimeout(() => {
           wx.switchTab({
             url: "/pages/home/home"

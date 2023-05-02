@@ -6,13 +6,29 @@ Page({
    */
   data: {
     role: "admin",
+    detail: {
+      name: "默认名称"
+    },
+    //状态枚举
+    statusEnum: {
+      "0": "可使用",
+      "1": "使用中",
+      "2": "维修中",
+      "3": "报废"
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    console.log(options, "传参数")
+    let data = JSON.parse(options.data)
+    data.attr = JSON.parse(data.attr)
+    this.setData({
+      detail: data
+    })
+    this.init(data)
   },
 
   /**
@@ -61,6 +77,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
+
+  },
+  init(data) {
+    //查询当前使用人
+    //查询使用记录
 
   },
   applyUse() {

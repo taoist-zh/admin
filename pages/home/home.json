@@ -15,6 +15,9 @@
     "load-more": "/components/load-more/index",
     "t-dropdown-menu": "tdesign-miniprogram/dropdown-menu/dropdown-menu",
     "t-dropdown-item": "tdesign-miniprogram/dropdown-item/dropdown-item",
-    "equipment-list": "/components/equipment-list/index"
+    "equipment-list": "/components/equipment-list/index",
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-popup": "tdesign-miniprogram/popup/popup",
+    "t-input": "tdesign-miniprogram/input/input"
   }
 }

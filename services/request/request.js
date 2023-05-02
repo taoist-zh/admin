@@ -16,14 +16,19 @@ const requestInterceptor = (config) => {
     return config;
   }
   if (!config.headers.authorization) {
+
+
     if (wx.getStorageSync('token')) {
       config.headers.authorization = wx.getStorageSync('token');
+      return config;
     } else {
+
       wx.redirectTo({
         url: '/pages/login',
       });
     }
   } else {
+    console.log("4")
     return config;
   }
 

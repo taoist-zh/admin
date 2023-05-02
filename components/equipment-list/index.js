@@ -52,11 +52,13 @@ Component({
     handleDetail(e) {
 
       const {
-        id
+        id,
+        item
       } = e.currentTarget.dataset;
+      let data = JSON.stringify(e.currentTarget.dataset.item);
       console.log("去详情页", id)
       wx.navigateTo({
-        url: '/pages/equipment/details/index?id=' + id,
+        url: '/pages/equipment/details/index?data=' + data,
       })
     }
   }

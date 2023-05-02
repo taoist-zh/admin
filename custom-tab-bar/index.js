@@ -1,8 +1,25 @@
 import TabMenu from './data';
+
 Component({
   data: {
     active: 0,
-    list: TabMenu,
+    list: [{
+      icon: 'home',
+      text: '设备',
+      url: 'pages/home/home',
+    },
+    {
+      icon: 'sort',
+      text: '管理',
+      url: "pages/coupon/coupon-list/index",
+    },
+  
+    {
+      icon: 'person',
+      text: '个人中心',
+      url: 'pages/usercenter/index',
+    },
+  ],
   },
 
   methods: {
@@ -16,6 +33,7 @@ Component({
     },
 
     init() {
+      var userInfo=wx.getStorage("userInfo")
       const page = getCurrentPages().pop();
       const route = page ? page.route.split('?')[0] : '';
       const active = this.data.list.findIndex(

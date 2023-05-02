@@ -38,11 +38,73 @@ function mockFetchHome() {
 }
 
 /** 获取首页数据 */
-export function getHomeData() {
+export function getHomeData(dto) {
   if (config.useMock) {
     return mockFetchHome();
+  } else {
+    return http({
+      url: '/device',
+      params: dto,
+      method: "get",
+    })
   }
-  return new Promise((resolve) => {
-    resolve('real api');
-  });
+
+}
+//获取分类数据
+export function getHomeTagData() {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    return http({
+      url: '/categorize',
+      method: "get",
+    })
+  }
+}
+
+//修改分类数据
+export function updateHomeTagData(dto) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    console.log(dto)
+    return http({
+      url: '/categorize',
+      method: "put",
+      data: dto
+    })
+  }
+}
+
+
+//修改分类数据
+export function delHomeTagData(dto) {
+  console.log(dto)
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    return http({
+      url: '/categorize',
+      method: "DELETE",
+      data: {
+        id: dto.id
+      }
+    })
+  }
+}
+
+//增加分类数据
+export function addHomeTagData(dto) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    console.log(dto)
+    return http({
+      url: '/categorize',
+      method: "post",
+      data: {
+        name: dto
+      }
+    })
+  }
 }

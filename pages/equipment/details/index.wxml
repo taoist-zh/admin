@@ -1,62 +1,51 @@
 <!--pages/equipment/details/index.wxml-->
+<wxs module="tool">
+  module.exports = {
+    getStatus: function (status) {
+
+      var enumList = {
+        "0": "可使用",
+        "1": "使用中",
+        "2": "维修中",
+        "3": "已报废",
+      }
+
+      return enumList[status.toString()];
+    }
+  }
+</wxs>
 <view class="main">
   <view class="main-img">
-    <image src="https://img12.360buyimg.com/n1/jfs/t1/187616/29/29241/32928/636e6c8bEa04b9c0c/7c285710cb64c679.jpg.avif" mode="" />
+    <image src="{{detail.imgUrl}}" mode="" />
   </view>
   <view class="main-container">
     <view class="main-container-card">
       <view>
-        <text class="main-container-title">xxx设备</text>
+        <text class="main-container-title">{{detail.name}}</text>
       </view>
       <view>
-        <text class="main-container-subtitle">一个什么版本什么的设备</text>
+        <text class="main-container-subtitle">{{detail.description}}</text>
       </view>
       <view class="main-container-title-status">
-        使用中
+        {{tool.getStatus(detail.status)}}
       </view>
     </view>
     <view class="main-container-card">
       <view class="user">
-        <text class="user-title">当前所属人</text><text class="user-name">章三</text>
+        <text class="user-title">当前所属人</text><text class="user-name">{{detail.status==0?"无":"默认"}}</text>
       </view>
     </view>
     <view class="main-container-card">
-      <view class="attr">
+      <view class="attr" wx:for="{{detail.attr}}" wx:for-index="key" wx:for-item="value">
         <view>
-          <text class="attr-title">属性名称1</text>
+          <text class="attr-title">{{key}}</text>
         </view>
         <view>
-          <text class="attr-des">属性值1</text>
-        </view>
-        <view class="attr-line" />
-      </view>
-      <view class="attr">
-        <view>
-          <text class="attr-title">属性名称1</text>
-        </view>
-        <view>
-          <text class="attr-des">属性值1</text>
+          <text class="attr-des">{{value}}</text>
         </view>
         <view class="attr-line" />
       </view>
-      <view class="attr">
-        <view>
-          <text class="attr-title">属性名称1</text>
-        </view>
-        <view>
-          <text class="attr-des">属性值1</text>
-        </view>
-        <view class="attr-line" />
-      </view>
-      <view class="attr">
-        <view>
-          <text class="attr-title">属性名称1</text>
-        </view>
-        <view>
-          <text class="attr-des">属性值1</text>
-        </view>
-        <view class="attr-line" />
-      </view>
+
     </view>
     <view class="main-container-card records-main">
       <view class="records-title">
