@@ -29,7 +29,7 @@ Page({
     pageLoading: false,
     typeId: "",
     currentStatus: "all",
-    role: "student",
+    role1: "student",
     addTagVisible: false,
     addDeviceVisible: false,
     newTabName: "",
@@ -74,7 +74,6 @@ Page({
         },
       ],
     },
-    typeId: "",
     equipmentsListPagination: {
       index: 0,
       num: 20,
@@ -95,13 +94,17 @@ Page({
     //  把store中的属性和方法绑定到页面上
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ['token', 'userName', 'avatar', 'role'],
+      fields: ['token', 'userName', 'avatar'],
     })
     let userIfo = wx.getStorageSync('userInfo')
+
     userIfo = JSON.parse(userIfo)
+
     this.setData({
       role: userIfo.role
     })
+    console.log(this.data.role)
+
     this.init();
   },
 
@@ -112,15 +115,15 @@ Page({
   },
 
   onPullDownRefresh() {
-    this.init();
+    this.init(true);
   },
 
-  init() {
+  init(fresh) {
 
-    this.loadHomePage();
+    this.loadHomePage(true);
   },
 
-  loadHomePage() {
+  loadHomePage(fresh) {
     //停止刷新
     wx.stopPullDownRefresh();
 
@@ -152,9 +155,10 @@ Page({
           typeId: res.data.data[0].id
         });
         //获取设备数据
-
+        console.log(this.data.typeId, 'id======')
+        let id = fresh ? this.data.typeId : res.data.data[0].id
         getHomeData({
-          categorizeId: res.data.data[0].id
+          categorizeId: id
         }).then((res) => {
 
           if (res.data.code == 200) {
@@ -186,6 +190,7 @@ Page({
     this.setData({
       'product.value': "all",
     })
+
     this.loadEquipment(false, this.data.typeId);
   },
 

@@ -36,7 +36,7 @@
       </view>
     </view>
     <view class="main-container-card">
-      <view class="attr" wx:for="{{detail.attr}}" wx:for-index="key" wx:for-item="value">
+      <view class="attr" wx:for="{{detail.attr}}" wx:for-index="key" wx:for-item="value" wx:key="key">
         <view>
           <text class="attr-title">{{key}}</text>
         </view>
@@ -54,42 +54,31 @@
         <text>结束时间</text>
       </view>
 
-      <view class="attr">
+      <view class="attr" wx:for="{{useRecord}}" wx:key="index">
         <view class="record-item">
-          <text class="attr-title">章三</text>
+          <text class="attr-title">{{item.userId}}</text>
         </view>
         <view class="record-item">
-          <text class="attr-des">2023-01-02</text>
+          <text class="attr-des">{{item.startTime}}</text>
         </view>
         <view class="record-item1">
-          <text class="attr-des">2023-05-03</text>
+          <text class="attr-des">{{item.endTime}}</text>
         </view>
         <view class="attr-line" />
       </view>
-      <view class="attr">
-        <view class="record-item">
-          <text class="attr-title">章三</text>
-        </view>
-        <view class="record-item">
-          <text class="attr-des">2023-01-02</text>
-        </view>
-        <view class="record-item1">
-          <text class="attr-des">2023-05-03</text>
-        </view>
-        <view class="attr-line" />
-      </view>
-
 
     </view>
   </view>
+  <t-textarea t-class="external-class" label="备注" placeholder="请输入申请备注信息" value="{{description}}" bindchange="onDesInput" />
   <view class="main-action">
 
     <view wx:if="{{role=='student'}}">
-      <t-button theme="primary" size="small" bindtap="applyUse">申请使用</t-button>
-      <t-button theme="primary" size="small" bindtap="applyMaintenance">申请维修</t-button>
-      <t-button theme="primary" size="small" bindtap="applyUnserviceable">申请报废</t-button>
+      <t-button theme="primary" size="extra-small" bindtap="applyUse" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{detail.status==0}}">申请使用</t-button>
+      <t-button theme="primary" size="extra-small" bindtap="applyBack" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请归还</t-button>
+      <t-button theme="primary" size="extra-small" bindtap="applyMaintenance" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请维修</t-button>
+      <t-button theme="primary" size="extra-small" bindtap="applyUnserviceable" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请报废</t-button>
     </view>
-    <view wx:if="{{role=='admin'}}">
+    <!-- <view wx:if="{{role=='admin'}}">
       <text class="applyUser">
         <text>申请人: </text>
         <text>张三</text>
@@ -101,6 +90,7 @@
       <t-button theme="primary" size="small" bindtap="passApply">通过</t-button>
       <t-button theme="danger" size="small" bindtap="rejectApply">驳回</t-button>
 
-    </view>
+    </view> -->
   </view>
+  <t-toast id="t-toast" />
 </view>

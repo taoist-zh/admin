@@ -14,7 +14,8 @@
       <t-tab-panel wx:for="{{tabList}}" wx:for-index="index" wx:key="index" label="{{item.name}}" value="{{index}}" />
     </t-tabs>
   </view>
-  <view style="margin:0 auto;width: 380rpx;">
+  <view style="margin:0 auto;width: 380rpx;" wx:if="{{role=='admin'}}">
+
     <t-button theme="primary" style="margin-right: 10rpx;" bindtap="showAddDevice">新增设备</t-button>
     <t-button theme="primary" bindtap="handlePopup">分类管理</t-button>
   </view>

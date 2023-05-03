@@ -1,4 +1,9 @@
 // pages/equipment/details/index.js
+import Toast from 'tdesign-miniprogram/toast/index';
+import {
+  addAction,
+  getrecord
+} from "../../../services/action/action"
 Page({
 
   /**
@@ -9,6 +14,8 @@ Page({
     detail: {
       name: "默认名称"
     },
+    useRecord: [],
+    description: "",
     //状态枚举
     statusEnum: {
       "0": "可使用",
@@ -25,8 +32,13 @@ Page({
     console.log(options, "传参数")
     let data = JSON.parse(options.data)
     data.attr = JSON.parse(data.attr)
+    let userIfo = wx.getStorageSync('userInfo')
+
+    userIfo = JSON.parse(userIfo)
     this.setData({
-      detail: data
+      detail: data,
+      role: userIfo.role,
+      userId: userIfo.id
     })
     this.init(data)
   },
@@ -82,21 +94,91 @@ Page({
   init(data) {
     //查询当前使用人
     //查询使用记录
+    getrecord(data.id).then((res) => {
+      console.log(res.data.data, "使用记录")
+      let redord = res.data.data
+      redord = redord.map((item, index) => {
+        return {
+          ...item,
+          startTime: item.startTime.substr(0, 10),
+          endTime: item.endTime.substr(0, 10)
+        }
+      })
+      this.setData({
+        useRecord: redord
+      })
+    })
 
   },
-  applyUse() {
-    console.log("申请使用")
+  onDesInput(e) {
+    this.setData({
+      description: e.detail.value
+    })
   },
-  applyMaintenance() {
+  applyUse(e) {
+    let dto = {
+      "userId": this.data.userId,
+      "deviceId": this.data.detail.id,
+      "applyType": 1,
+      "description": this.data.description
+    }
+    console.log(dto, '申请参数')
+    this.apply(dto)
+  },
+  applyBack(e) {
+    console.log("申请归还")
+    let dto = {
+      "userId": this.data.userId,
+      "deviceId": this.data.detail.id,
+      "applyType": 2,
+      "description": this.data.description
+    }
+    console.log(dto, '申请参数')
+    this.apply(dto)
+  },
+  applyMaintenance(e) {
     console.log("申请维修")
+    let dto = {
+      "userId": this.data.userId,
+      "deviceId": this.data.detail.id,
+      "applyType": 3,
+      "description": this.data.description
+    }
+    console.log(dto, '申请参数')
+    this.apply(dto)
   },
-  applyUnserviceable() {
+  applyUnserviceable(e) {
     console.log("申请报废")
+    let dto = {
+      "userId": this.data.userId,
+      "deviceId": this.data.detail.id,
+      "applyType": 4,
+      "description": this.data.description
+    }
+    console.log(dto, '申请参数')
+    this.apply(dto)
   },
-  passApply() {
+  passApply(e) {
     console.log("通过申请")
   },
-  rejectApply() {
+  rejectApply(e) {
     console.log("驳回申请")
+  },
+  apply(dto) {
+    addAction(dto).then((res) => {
+      if (res.data.code == 200) {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      } else {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      }
+    })
   }
 })
