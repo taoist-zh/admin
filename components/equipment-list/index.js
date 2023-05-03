@@ -7,7 +7,8 @@ Component({
     equipmentsList: {
       type: Array,
       value: [],
-    }
+    },
+    role:"student"
   },
 
   /**

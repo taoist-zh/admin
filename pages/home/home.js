@@ -3,7 +3,8 @@ import {
   getHomeTagData,
   updateHomeTagData,
   delHomeTagData,
-  addHomeTagData
+  addHomeTagData,
+  addHomeDevice
 } from '../../services/home/home';
 import {
   getEquipmentsList
@@ -19,6 +20,7 @@ import {
 Page({
   data: {
     tabList: [],
+    tabListFi: [],
     equipmentsList: [],
     equipmentsListFi: [],
     equipmentsListLoadStatus: 0,
@@ -30,6 +32,19 @@ Page({
     addDeviceVisible: false,
     newTabName: "",
     isShowAddTab: false,
+    addDevicevisible: false,
+    pickerTabvisible: false,
+    fileList: [],
+    status: false,
+    newTabName: "",
+    addDeviceForm: {
+      categorizeId: null,
+      name: "",
+      deviceNumber: "",
+      description: "",
+      attr: '',
+      imgUrl: ""
+    },
     //状态分类
     product: {
       value: 'all',
@@ -111,11 +126,23 @@ Page({
     getHomeTagData().then((res) => {
       if (res.data.code == 200) {
         console.log(res.data.data)
+        let list = JSON.parse(JSON.stringify(res.data.data))
+        list = list.map((item, index) => {
+          return {
+            label: item.name,
+            value: item.id
+          }
+        })
+        list.push({
+          label: "暂不分类",
+          value: null
+        })
         this.setData({
           tabList: [...res.data.data, {
             name: "未分类",
             categorizeId: null
           }],
+          tabListFi: list,
           pageLoading: false,
           typeId: res.data.data[0].id
         });
@@ -294,9 +321,21 @@ Page({
           message: res.data.message,
         });
         let tablist = JSON.parse(JSON.stringify(this.data.tabList))
+        let list = JSON.parse(JSON.stringify(res.data.data))
+        list = list.map((item, index) => {
+          return {
+            label: item.name,
+            value: item.id
+          }
+        })
+        list.push({
+          label: "暂不分类",
+          value: null
+        })
         tablist.splice(index, 1)
         this.setData({
-          tabList: tablist
+          tabList: tablist,
+          tabListFi: list
         })
       }
     })
@@ -365,6 +404,148 @@ Page({
     let index = e.currentTarget.dataset.index
     this.data.tabList[index].name = e.detail.value
     console.log(this.data.tabList)
+  },
+  showAddDevice() {
+    this.setData({
+      addDevicevisible: true
+    })
+  },
+  onClose1() {
+    this.setData({
+      addDevicevisible: false
+    })
+  },
+  onTabPicker() {
+    this.setData({
+      pickerTabvisible: true
+    })
+  },
+  onColumnChange(e) {
+    this.setData({
+      "addDeviceForm.categorizeId": e.detail.value[0],
+      newTabName: e.detail.label[0]
+    })
+  },
+  onPickerCancel() {
+    console.log(this.data.addDeviceForm)
+    this.setData({
+      pickerTabvisible: false
+    })
+  },
+  onNameInput(e) {
+    this.setData({
+      "addDeviceForm.name": e.detail.value
+    })
+  },
+  onNumberInput(e) {
+    this.setData({
+      "addDeviceForm.deviceNumber": e.detail.value
+    })
+  },
+  onDesInput(e) {
+    this.setData({
+      "addDeviceForm.description": e.detail.value
+    })
+  },
+  onAttrInput(e) {
+    let attr = this.extractAttributes(e.detail.value)
+    this.data.addDeviceForm.attr = JSON.stringify(attr)
+  },
+  extractAttributes(str) {
+    console.log(str)
+    const regex = /([^,]+):([^,]+)/g;
+    const attributes = {};
+    let match;
+
+    while ((match = regex.exec(str)) !== null) {
+      const name = match[1];
+      const value = match[2];
+      attributes[name] = value;
+    }
+
+    return attributes;
+  },
+  handleAddDevice() {
+    console.log(this.data.addDeviceForm, "数据信息")
+    addHomeDevice(this.data.addDeviceForm).then((res) => {
+      if (res.data.code == 200) {
+        this.setData({
+          addDevicevisible: false
+        })
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      } else {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      }
+    })
+  },
+  handleAdd(e) {
+    const {
+      fileList
+    } = this.data;
+    const {
+      files
+    } = e.detail;
+    // 方法2：每次选择图片都上传，展示每次上传图片的进度
+    let that = this
+    files.forEach(file => that.uploadFile(file))
+  },
+  uploadFile(file) {
+    const {
+      fileList
+    } = this.data;
+
+    this.setData({
+      fileList: [...fileList, {
+        ...file,
+        status: 'loading'
+      }],
+    });
+    const {
+      length
+    } = fileList;
+    console.log(file.url)
+    const task = wx.uploadFile({
+      url: 'http://localhost:3000/api/device/img', // 仅为示例，非真实的接口地址
+      filePath: file.url,
+      name: 'file',
+      success: (res) => {
+
+        let {
+          url
+        } = JSON.parse(res.data)
+        console.log(url, '图片路径')
+        this.setData({
+          [`fileList[${length}].status`]: 'done',
+          "addDeviceForm.imgUrl": "http://localhost:3000" + url
+        });
+      },
+    });
+    task.onProgressUpdate((res) => {
+      this.setData({
+        [`fileList[${length}].percent`]: res.progress,
+      });
+    });
+  },
+  handleRemove(e) {
+    const {
+      index
+    } = e.detail;
+    const {
+      fileList
+    } = this.data;
+
+    fileList.splice(index, 1);
+    this.setData({
+      fileList,
+    });
   },
   navToSearchPage() {
     wx.navigateTo({

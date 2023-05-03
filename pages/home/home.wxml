@@ -48,6 +48,28 @@
       <t-icon t-class="close-btn" name="close-circle" size="32" color="#fff" bind:tap="onClose" />
     </view>
   </t-popup>
+  <!-- 新增设备弹出层 -->
+  <t-popup visible="{{addDevicevisible}}" placement="center">
+    <view class="block">
+      <view>
+        <t-input label="设备名称" placeholder="请输入名称" bindchange="onNameInput" value="{{addDeviceForm.name}}"></t-input>
+        <t-input label="设备编号" placeholder="请输入编号" bindchange="onNumberInput" value="{{addDeviceForm.deviceNumber}}"></t-input>
+        <t-cell class="mb-16" title="选择分类" arrow hover bind:click="onTabPicker" note="{{newTabName}}" />
+        <t-picker visible="{{pickerTabvisible}}" value="{{tabListFi[0].value}}" keys="{{tabToPicker}}" title="选择分类" cancelBtn="取消" confirmBtn="确认" bindpick="onColumnChange" bindcancel="onPickerCancel">
+          <t-picker-item options="{{tabListFi}}" />
+        </t-picker>
+        <view style="padding: 30rpx;">
+          <text>设备图片(只能为png、jgp)</text>
+          <t-upload mediaType="{{['image']}}" max="{{1}}" files="{{fileList}}" bind:add="handleAdd" bind:remove="handleRemove">
+          </t-upload>
+        </view>
+        <t-textarea t-class="external-class" label="设备描述" placeholder="请输入设备描述" disableDefaultPadding="{{true}}" value="{{addDeviceForm.description}}" bindchange="onDesInput" />
+        <t-textarea t-class="external-class" label="属性" placeholder="格式:属性名1:属性值1,属性名2:属性值2" disableDefaultPadding="{{true}}" value="{{addDeviceForm.attr}}" bindchange="onAttrInput" />
+        <t-button theme="primary" bindtap="handleAddDevice" block style="margin:0 auto;width: 90%;">确定</t-button>
+      </view>
+      <t-icon t-class="close-btn" name="close-circle" size="32" color="#fff" bind:tap="onClose1" />
+    </view>
+  </t-popup>
   <!-- 状态选择 -->
   <t-dropdown-menu>
     <t-dropdown-item options="{{product.options}}" value="{{product.value}}" bindchange="onChange" />

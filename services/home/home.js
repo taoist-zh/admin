@@ -108,3 +108,31 @@ export function addHomeTagData(dto) {
     })
   }
 }
+//增加设备信息
+export function addHomeDevice(dto) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    console.log(dto)
+    return http({
+      url: '/device',
+      method: "post",
+      data: dto
+    })
+  }
+}
+
+//上传图片
+//增加设备信息
+export function addDeviceImg(dto) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    console.log(dto)
+    return http({
+      url: '/device',
+      method: "post",
+      data: dto
+    })
+  }
+}

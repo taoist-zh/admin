@@ -31,6 +31,9 @@
           <view>用</view>
           <view>申请使用</view>
         </view>
+        <view>
+          <slot></slot>
+        </view>
         <view class="{{'status-tag status-'+item.status}}">
           {{tool.getStatus(item.status)}}
         </view>
