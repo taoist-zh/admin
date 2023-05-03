@@ -16,8 +16,8 @@
   </view>
   <view style="margin:0 auto;width: 380rpx;" wx:if="{{role=='admin'}}">
 
-    <t-button theme="primary" style="margin-right: 10rpx;" bindtap="showAddDevice">新增设备</t-button>
-    <t-button theme="primary" bindtap="handlePopup">分类管理</t-button>
+    <t-button theme="primary" style="margin-right: 10rpx;" bindtap="showAddDevice" size='small'>新增设备</t-button>
+    <t-button theme="primary" bindtap="handlePopup" size='small'>分类管理</t-button>
   </view>
   <!-- 操作弹出层 -->
   <t-popup visible="{{addTagVisible}}" bind:visible-change="onVisibleChange" placement="center">
