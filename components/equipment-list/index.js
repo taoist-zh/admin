@@ -8,7 +8,7 @@ Component({
       type: Array,
       value: [],
     },
-    role:"student"
+    role: "student"
   },
 
   /**
@@ -45,7 +45,14 @@ Component({
       },
     ]
   },
-
+  attached: function () {
+    // 在组件实例进入页面节点树时执行
+    let userInfo = wx.getStorageSync('userInfo')
+    userInfo = JSON.parse(userInfo)
+    this.setData({
+      role: userInfo.role
+    })
+  },
   /**
    * 组件的方法列表
    */
@@ -61,6 +68,22 @@ Component({
       wx.navigateTo({
         url: '/pages/equipment/details/index?data=' + data,
       })
+    },
+    handleUpdate(e) {
+      const {
+        item
+      } = e.currentTarget.dataset;
+      this.triggerEvent("handelUpdate", {
+        item
+      });
+    },
+    handleDel() {
+      const {
+        id
+      } = e.currentTarget.dataset;
+      this.triggerEvent("handelDel", {
+        id
+      });
     }
   }
 })

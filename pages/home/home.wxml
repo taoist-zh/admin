@@ -65,7 +65,8 @@
         </view>
         <t-textarea t-class="external-class" label="设备描述" placeholder="请输入设备描述" disableDefaultPadding="{{true}}" value="{{addDeviceForm.description}}" bindchange="onDesInput" />
         <t-textarea t-class="external-class" label="属性" placeholder="格式:属性名1:属性值1,属性名2:属性值2" disableDefaultPadding="{{true}}" value="{{addDeviceForm.attr}}" bindchange="onAttrInput" />
-        <t-button theme="primary" bindtap="handleAddDevice" block style="margin:0 auto;width: 90%;">确定</t-button>
+        <t-button theme="primary" bindtap="handleAddDevice" block style="margin:0 auto;width: 90%;" wx:if="{{isAddDevice}}">确定增加</t-button>
+        <t-button theme="primary" bindtap="handleUpdateDevice" block style="margin:0 auto;width: 90%;" wx:if="{{!isAddDevice}}">确定修改</t-button>
       </view>
       <t-icon t-class="close-btn" name="close-circle" size="32" color="#fff" bind:tap="onClose1" />
     </view>
@@ -74,6 +75,6 @@
   <t-dropdown-menu>
     <t-dropdown-item options="{{product.options}}" value="{{product.value}}" bindchange="onChange" />
   </t-dropdown-menu>
-  <equipment-list equipmentsList="{{equipmentsListFi}}" />
+  <equipment-list equipmentsList="{{equipmentsListFi}}" bindhandelUpdate="handelUpdateDevice" bindhandelDel="handelDel" />
   <t-toast id="t-toast" />
 </view>

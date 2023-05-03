@@ -4,7 +4,9 @@ import {
   updateHomeTagData,
   delHomeTagData,
   addHomeTagData,
-  addHomeDevice
+  addHomeDevice,
+  updateDevice,
+  delDevice
 } from '../../services/home/home';
 import {
   getEquipmentsList
@@ -36,8 +38,10 @@ Page({
     pickerTabvisible: false,
     fileList: [],
     status: false,
+    isAddDevice: true, //增加设备弹出层，底下按钮是增加还是修改
     newTabName: "",
     addDeviceForm: {
+      id: "",
       categorizeId: null,
       name: "",
       deviceNumber: "",
@@ -112,6 +116,7 @@ Page({
   },
 
   init() {
+
     this.loadHomePage();
   },
 
@@ -147,9 +152,11 @@ Page({
           typeId: res.data.data[0].id
         });
         //获取设备数据
+
         getHomeData({
           categorizeId: res.data.data[0].id
         }).then((res) => {
+
           if (res.data.code == 200) {
             console.log(res.data.data)
             this.setData({
@@ -187,6 +194,7 @@ Page({
 
   },
   async loadEquipment(fresh = false, typeId) {
+    console.log("shuaixn233")
     if (fresh) {
       wx.pageScrollTo({
         scrollTop: 0,
@@ -407,7 +415,8 @@ Page({
   },
   showAddDevice() {
     this.setData({
-      addDevicevisible: true
+      addDevicevisible: true,
+      isAddDevice: true
     })
   },
   onClose1() {
@@ -467,7 +476,9 @@ Page({
   },
   handleAddDevice() {
     console.log(this.data.addDeviceForm, "数据信息")
-    addHomeDevice(this.data.addDeviceForm).then((res) => {
+    let params = JSON.parse(JSON.stringify(this.data.addDeviceForm))
+    delete params.id
+    addHomeDevice(params).then((res) => {
       if (res.data.code == 200) {
         this.setData({
           addDevicevisible: false
@@ -551,6 +562,86 @@ Page({
     wx.navigateTo({
       url: '/pages/equipments/search/index'
     });
+  },
+  handelUpdateDevice(e) {
+    const {
+      item
+    } = e.detail;
+    console.log(item, "传递的值")
+    let attr = JSON.parse(item.attr)
+    let attr1 = ""
+    Object.keys(attr).forEach((item, index) => {
+      let douhao = (index == (Object.keys(attr).length - 1)) ? "" : ","
+      attr1 += item + ":" + attr[item] + douhao
+    })
+    console.log(attr1)
+    this.setData({
+      isAddDevice: false,
+      addDevicevisible: true,
+      "addDeviceForm.id": item.id,
+      "addDeviceForm.name": item.name,
+      "addDeviceForm.categorizeId": item.categorizeId,
+      "addDeviceForm.deviceNumber": item.deviceNumber,
+      "addDeviceForm.description": item.description,
+      "addDeviceForm.imgUrl": item.imgUrl,
+      "addDeviceForm.attr": attr1,
+      fileList: [{
+        url: item.imgUrl,
+        name: 'uploade.png',
+        type: 'image',
+      }]
+    })
+
+  },
+  handleUpdateDevice() {
+    console.log(this.data.addDeviceForm, "数据信息")
+    let params = JSON.parse(JSON.stringify(this.data.addDeviceForm))
+    if (params.attr.indexOf("{") == -1) {
+      let attr = this.extractAttributes(params)
+      params.attr = JSON.stringify(attr)
+    }
+    updateDevice(params).then((res) => {
+      if (res.data.code == 200) {
+        this.setData({
+          addDevicevisible: false
+        })
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      } else {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      }
+    })
+  },
+  handelDel(e) {
+    const {
+      id
+    } = e.detail;
+    console.log(id, "传递的值")
+    delDevice(id).then((res) => {
+      if (res.data.code == 200) {
+        this.setData({
+          addDevicevisible: false
+        })
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      } else {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      }
+    })
   },
   onChange(e) {
     this.setData({

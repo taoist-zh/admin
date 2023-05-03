@@ -31,8 +31,9 @@
           <view>用</view>
           <view>申请使用</view>
         </view>
-        <view>
-          <slot></slot>
+        <view wx:if="{{role=='admin'}}">
+          <t-button size="extra-small" theme="primary" style="margin: 10rpx;" bindtap="handleUpdate" data-item="{{item}}">修改</t-button>
+          <t-button size="extra-small" style="margin: 10rpx;" bindtap="handleDel" data-id="{{item.id}}">删除</t-button>
         </view>
         <view class="{{'status-tag status-'+item.status}}">
           {{tool.getStatus(item.status)}}

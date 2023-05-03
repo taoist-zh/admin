@@ -136,3 +136,33 @@ export function addDeviceImg(dto) {
     })
   }
 }
+
+
+//修改设备信息
+export function updateDevice(dto) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    console.log(dto)
+    return http({
+      url: '/device',
+      method: "put",
+      data: dto
+    })
+  }
+}
+//删除设备信息
+export function delDevice(id) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    console.log(dto)
+    return http({
+      url: '/device',
+      method: "delete",
+      data: {
+        id
+      }
+    })
+  }
+}
