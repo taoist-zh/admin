@@ -14,16 +14,16 @@
 <view class="wr-coupon coupon-class theme-{{theme}}">
   <view class="wr-coupon__left">
     <view class="img">
-      <image src="https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png" mode="" />
+      <image src="{{imgUrl}}" mode="" />
     </view>
 
   </view>
   <view class="wr-coupon__right">
     <view class="wr-coupon__right--title">
-      <text class="coupon-title">设备1</text>
-      <view class="coupon-time"><text>申请日期:</text><text>2023-03-22</text></view>
+      <text class="coupon-title">{{name}}</text>
+      <view class="coupon-time"><text>申请日期:</text><text>{{time}}</text></view>
       <view class="coupon-desc">
-        <view><text>申请人:</text>章三</view>
+        <view><text>申请人:</text>{{username}}</view>
       </view>
     </view>
     <view class="wr-coupon__right--oper">

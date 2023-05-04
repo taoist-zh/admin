@@ -32,14 +32,14 @@ var orderTagInfosItem = userInfo.role == "admin" ? [{
     iconName: 'package',
     orderNum: 0,
     tabType: 40,
-    status: 1,
+    status: 2,
   },
   {
     title: '已拒绝',
     iconName: 'comment',
     orderNum: 0,
     tabType: 60,
-    status: 1,
+    status: 3,
   },
 ] : [{
     title: '待批复',
@@ -91,7 +91,7 @@ Page({
   },
 
   init() {
-  
+
 
   },
 
@@ -133,16 +133,27 @@ Page({
   },
 
   jumpNav(e) {
-    const status = e.detail.tabType;
+    const status = e.detail.status;
 
-    if (status === 0) {
-      wx.navigateTo({
-        url: '/pages/coupon/coupon-list/index'
-      });
-    } else {
-      wx.navigateTo({
-        url: `'/pages/coupon/coupon-list/index'`
-      });
+    if (status == 1) {
+      wx.setStorageSync('applyStatus', 1);
+      wx.switchTab({
+        url: '/pages/coupon/coupon-list/index',
+
+      })
+
+    } else if (status == 2) {
+      wx.setStorageSync('applyStatus', 2);
+      wx.switchTab({
+        url: '/pages/coupon/coupon-list/index',
+
+      })
+    } else if (status == 3) {
+      wx.setStorageSync('applyStatus', 3);
+      wx.switchTab({
+        url: '/pages/coupon/coupon-list/index',
+
+      })
     }
   },
 
@@ -164,5 +175,12 @@ Page({
     }
   },
 
-
+  loginOut() {
+    console.log("推出登陆")
+    wx.removeStorageSync('userInfo')
+    wx.removeStorageSync('token')
+    wx.navigateTo({
+      url: '/pages/login/login'
+    });
+  }
 });

@@ -10,6 +10,7 @@
       </t-cell>
     </t-cell-group>
   </view>
+  <t-button block bindtap="loginOut">退出登陆</t-button>
 </view>
 
 <t-toast id="t-toast" />

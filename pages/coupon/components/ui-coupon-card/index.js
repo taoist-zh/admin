@@ -7,63 +7,51 @@ Component({
   externalClasses: ['coupon-class'],
 
   properties: {
-    mask: {
-      type: Boolean,
-      value: false, // 是否添加遮罩
-    },
-    superposable: {
-      type: Boolean,
-      value: false, // 是否可叠加
-    },
-    type: {
+    applyStatus: {
       type: String,
-      value: '', // 优惠券类型：CouponType
+      value: "",
     },
-    value: {
+    applyType: {
+      type: String,
+      value: "",
+    },
+    description: {
+      type: String,
+      value: '',
+    },
+    deviceId: {
       type: String,
       value: '', // 优惠金额
     },
-    tag: {
-      type: String,
-      value: '', // 优惠标签，优惠券名字标签，img
-    },
-    desc: {
-      type: String,
-      value: '', // 优惠金额描述，金额下方
-    },
-    title: {
-      type: String, // 优惠券名称
-      value: '',
-    },
-    timeLimit: {
-      type: String, // 优惠券时限
-      value: '',
-    },
-    ruleDesc: {
-      type: String, // 优惠券适用规则描述
-      value: '',
-    },
-    currency: {
-      type: String,
-      value: '¥', // 优惠货币
-    },
-    status: {
-      type: String,
-      value: 'default',
-    },
-    image: {
+    userId: {
       type: String,
       value: '',
     },
+    id: {
+      type: String,
+      value: '',
+    },
+    time: {
+      type: String,
+      value: '',
+    },
+    name: {
+      type: String,
+      value: '',
+    },
+    username: {
+      type: String,
+      value: '',
+    },
+    imgUrl: {
+      type: String,
+      value: '',
+    },
+
+
   },
 
   data: {
-    CouponType: {
-      MJ_COUPON: 1,
-      ZK_COUPON: 2,
-      MJF_COUPON: 3,
-      GIFT_COUPON: 4,
-    },
     theme: 'primary',
   },
 
@@ -75,7 +63,9 @@ Component({
         theme = 'weak';
       }
 
-      this.setData({ theme });
+      this.setData({
+        theme
+      });
     },
   },
 

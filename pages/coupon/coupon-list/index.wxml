@@ -3,8 +3,8 @@
 </t-tabs>
 <view class="coupon-list-wrap">
   <t-pull-down-refresh t-class-indicator="t-class-indicator" id="t-pull-down-refresh" bind:refresh="onPullDownRefresh_" background="#fff">
-    <view class="coupon-list-item" wx:for="{{couponList}}" wx:key="key">
-      <coupon-card couponDTO="{{item}}" />
+    <view class="coupon-list-item" wx:for="{{applyList}}" wx:key="key">
+      <coupon-card couponDTO="{{item}}" status="{{status}}" />
     </view>
   </t-pull-down-refresh>
   <view class="center-entry">

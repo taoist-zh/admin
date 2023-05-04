@@ -1,23 +1,15 @@
-<ui-coupon-card
-  title="{{couponDTO.title || ''}}"
-  type="{{couponDTO.type || ''}}"
-  value="{{couponDTO.value || '0'}}"
-  tag="{{couponDTO.tag || ''}}"
-  desc="{{couponDTO.desc || ''}}"
-  currency="{{couponDTO.currency || ''}}"
-  timeLimit="{{couponDTO.timeLimit || ''}}"
-  status="{{couponDTO.status || ''}}"
-  bind:tap="gotoDetail"
->
-  <view slot="operator" class="coupon-btn-slot">
-    <t-button
-      t-class="coupon-btn-{{btnTheme}}"
-      theme="{{btnTheme}}"
-      variant="outline"
-      shape="round"
-      size="extra-small"
-      bind:tap="gotoGoodsList"
-      >{{btnText}}
+<ui-coupon-card applyStatus="{{couponDTO.applyStatus || ''}}" applyType="{{couponDTO.applyType || ''}}" description="{{couponDTO.description || '0'}}" deviceId="{{couponDTO.deviceId || ''}}" id="{{couponDTO.id || ''}}" userId="{{couponDTO.userId || ''}}" time='{{couponDTO.time || ""}}' name='{{couponDTO.name || ""}}' username='{{couponDTO.username || ""}}' imgUrl='{{couponDTO.imgUrl || ""}}'>
+  <view slot="operator" class="coupon-btn-slot" wx:if="{{role=='admin'}}">
+    <t-button t-class="coupon-btn-{{btnTheme}}" theme="primary" variant="outline" shape="round" size="extra-small" bind:tap="rejectApply" wx:if="{{status==1}}" data-id="{{couponDTO.id}}">{{"驳回"}}
+    </t-button>
+    <t-button t-class="coupon-btn-{{btnTheme}}" theme="primary" variant="outline" shape="round" size="extra-small" bind:tap="passApply" wx:if="{{status==1}}" data-id="{{couponDTO.id}}">{{"通过"}}
     </t-button>
   </view>
+  <view slot="operator" class="coupon-btn-slot" wx:if="{{role=='student'}}">
+    <t-button t-class="coupon-btn-{{btnTheme}}" theme="primary" variant="outline" shape="round" size="extra-small" wx:if="{{status==2}}" data-id="{{couponDTO.id}}">已通过
+    </t-button>
+    <t-button t-class="coupon-btn-{{btnTheme}}" theme="danger" variant="outline" shape="round" size="extra-small" bind:tap="applyAgain" wx:if="{{status==3}}" data-id="{{couponDTO.id}}">再次申请
+    </t-button>
+  </view>
+  <t-toast id="t-toast" />
 </ui-coupon-card>

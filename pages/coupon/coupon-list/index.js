@@ -1,40 +1,58 @@
 import {
-  fetchCouponList
-} from '../../../services/coupon/index';
+  getRecord
+} from '../../../services/action/action';
 
 Page({
   data: {
+    id: "",
     role: "admin",
-    status: 0,
+    status: 1,
     list1: [{
         text: '未处理',
-        key: 0,
+        key: 1,
       },
       {
-        text: '已处理',
-        key: 1,
+        text: '已通过',
+        key: 2,
+      },
+      {
+        text: '已驳回',
+        key: 3,
       }
     ],
     list2: [{
         text: '待处理',
-        key: 0,
-      },
-      {
-        text: '已通过',
         key: 1,
       },
       {
-        text: '已驳回',
+        text: '已通过',
         key: 2,
+      },
+      {
+        text: '已驳回',
+        key: 3,
       },
     ],
 
-    couponList: [
+    applyList: [
 
     ],
   },
 
   onLoad() {
+    // this.setData({
+    //   status: 3
+    // })
+    // let status = wx.getStorageSync('applyStatus')
+    let userInfo = wx.getStorageSync('userInfo')
+    userInfo = JSON.parse(userInfo)
+    this.setData({
+      role: userInfo.role,
+      id: userInfo.id,
+      // status: status
+    })
+    // console.log(this.tabChange)
+
     this.init();
   },
   onShow() {
@@ -45,29 +63,19 @@ Page({
   },
 
   fetchList(status = this.data.status) {
-    let statusInFetch = '';
-    switch (Number(status)) {
-      case 0: {
-        statusInFetch = 'default';
-        break;
-      }
-      case 1: {
-        statusInFetch = 'useless';
-        break;
-      }
-      case 2: {
-        statusInFetch = 'disabled';
-        break;
-      }
-      default: {
-        throw new Error(`unknown fetchStatus: ${statusInFetch}`);
-      }
+    let params = {
+      applyStatus: status
     }
-    fetchCouponList(statusInFetch).then((couponList) => {
+    console.log(status, 'statusstatusstatusstatus')
+    if (this.data.role == "student") {
+      params.userId = this.data.id
+    }
+    getRecord(params).then((res) => {
+      console.log(res.data.data, '申请记录')
       this.setData({
-        couponList
-      });
-    });
+        applyList: res.data.data
+      })
+    })
   },
 
   tabChange(e) {

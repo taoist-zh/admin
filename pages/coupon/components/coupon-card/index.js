@@ -1,3 +1,7 @@
+import {
+  dealApply
+} from "../../../../services/action/action";
+import Toast from 'tdesign-miniprogram/toast/index';
 const statusMap = {
   default: {
     text: '待处理',
@@ -23,44 +27,91 @@ Component({
   properties: {
     couponDTO: {
       type: Object,
-      value: {}, // 优惠券数据
+      value: {}, // 申请数据
+    },
+    status: {
+      type: Number,
+      value: 1,
     },
   },
 
   data: {
     btnText: '',
     btnTheme: '',
+    role: "student",
   },
 
-  observers: {
-    couponDTO: function (couponDTO) {
-      if (!couponDTO) {
-        return;
-      }
-      const statusInfo = statusMap[couponDTO.status];
+  attached() {
+    let userInfo = wx.getStorageSync('userInfo')
+    userInfo = JSON.parse(userInfo)
+    this.setData({
+      role: userInfo.role
+    })
 
-      this.setData({
-        btnText: statusInfo.text,
-        btnTheme: statusInfo.theme,
-      });
-    },
   },
-
-  attached() {},
 
   methods: {
-    // 跳转到详情页
-    gotoDetail() {
-      wx.navigateTo({
-        url: `/pages/coupon/coupon-detail/index?id=${this.data.couponDTO.key}`,
-      });
-    },
+    rejectApply(e) {
 
-    // 跳转到商品列表
-    gotoGoodsList() {
-      wx.navigateTo({
-        url: `/pages/coupon/coupon-activity-goods/index?id=${this.data.couponDTO.key}`,
-      });
+      const {
+        id
+      } = e.currentTarget.dataset;
+      dealApply(id, 3).then((res) => {
+        if (res.data.code == 200) {
+          Toast({
+            context: this,
+            selector: '#t-toast',
+            message: res.data.message,
+          });
+        } else {
+          Toast({
+            context: this,
+            selector: '#t-toast',
+            message: res.data.message,
+          });
+        }
+      })
     },
+    passApply(e) {
+
+      const {
+        id
+      } = e.currentTarget.dataset;
+      dealApply(id, 2).then((res) => {
+        if (res.data.code == 200) {
+          Toast({
+            context: this,
+            selector: '#t-toast',
+            message: res.data.message,
+          });
+        } else {
+          Toast({
+            context: this,
+            selector: '#t-toast',
+            message: res.data.message,
+          });
+        }
+      })
+    },
+    applyAgain(e) {
+      const {
+        id
+      } = e.currentTarget.dataset;
+      dealApply(id, 1).then((res) => {
+        if (res.data.code == 200) {
+          Toast({
+            context: this,
+            selector: '#t-toast',
+            message: res.data.message,
+          });
+        } else {
+          Toast({
+            context: this,
+            selector: '#t-toast',
+            message: res.data.message,
+          });
+        }
+      })
+    }
   },
 });

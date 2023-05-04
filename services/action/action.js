@@ -64,3 +64,40 @@ export function addAction(dto) {
   }
 
 }
+
+//查看申请记录
+export function getRecord(params) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    // var params = {
+    //   applyStatus: applyStatus
+    // }
+    // if (!!id) {
+    //   params.userId = id
+    // }
+    return http({
+      url: '/apply/list',
+      method: "get",
+      params
+    })
+  }
+
+}
+
+//处理请求
+export function dealApply(id, type) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    return http({
+      url: '/apply/deal',
+      method: "post",
+      data: {
+        "id": id,
+        "applyStatus": type
+      }
+    })
+  }
+
+}
