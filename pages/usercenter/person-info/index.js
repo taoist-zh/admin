@@ -1,98 +1,57 @@
 import {
-  fetchPerson
-} from '../../../services/usercenter/fetchPerson';
-import {
-  phoneEncryption
-} from '../../../utils/util';
+  editUser
+} from '../../../services/user/user';
+
 import Toast from 'tdesign-miniprogram/toast/index';
 
 Page({
   data: {
-    personInfo: {
-      avatarUrl: '',
-      nickName: '',
-      gender: 0,
-      phoneNumber: '',
+    userInfo: {
+      id: "",
+      avatar: '',
+      username: '',
+      email: "",
+      phone: '',
+      password: ""
     },
     showUnbindConfirm: false,
-    pickerOptions: [{
-        name: '男',
-        code: '1',
-      },
-      {
-        name: '女',
-        code: '2',
-      },
-    ],
     typeVisible: false,
-    genderMap: ['', '男', '女'],
   },
   onLoad() {
-    this.init();
+    var userInfo = wx.getStorageSync('userInfo')
+    userInfo = JSON.parse(userInfo)
+    this.init(userInfo, false);
   },
-  init() {
-    this.fetchData();
-  },
-  fetchData() {
-    fetchPerson().then((personInfo) => {
-      this.setData({
-        personInfo,
-        'personInfo.phoneNumber': phoneEncryption(personInfo.phoneNumber),
-      });
-    });
-  },
-  onClickCell({
-    currentTarget
-  }) {
-    const {
-      dataset
-    } = currentTarget;
-    const {
-      nickName
-    } = this.data.personInfo;
-
-    switch (dataset.type) {
-      case 'gender':
-        this.setData({
-          typeVisible: true,
-        });
-        break;
-      case 'name':
-        wx.navigateTo({
-          url: `/pages/usercenter/name-edit/index?name=${nickName}`,
-        });
-        break;
-      case 'avatarUrl':
-        this.toModifyAvatar();
-        break;
-      default: {
-        break;
-      }
-    }
-  },
-  onClose() {
+  init(userInfo, fresh) {
+    delete userInfo.token
     this.setData({
-      typeVisible: false,
-    });
+      userInfo: userInfo
+    })
   },
-  onConfirm(e) {
-    const {
-      value
-    } = e.detail;
-    this.setData({
-        typeVisible: false,
-        'personInfo.gender': value,
-      },
-      () => {
+  formSubmit() {
+    console.log("baocun")
+    editUser(this.data.userInfo).then((res) => {
+      console.log(res)
+      if (res.data.code == 200) {
         Toast({
           context: this,
           selector: '#t-toast',
-          message: '设置成功',
-          theme: 'success',
+          message: res.data.message,
         });
-      },
-    );
+      } else {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+
+        });
+      }
+    })
+
   },
+
+
+
   async toModifyAvatar() {
     try {
       const tempFilePath = await new Promise((resolve, reject) => {

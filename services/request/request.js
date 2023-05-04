@@ -17,9 +17,9 @@ const requestInterceptor = (config) => {
   }
   if (!config.headers.authorization) {
 
-
-    if (wx.getStorageSync('token')) {
-      config.headers.authorization = wx.getStorageSync('token');
+    var token = wx.getStorageSync('token')
+    if (!!token) {
+      config.headers.authorization = token;
       return config;
     } else {
 

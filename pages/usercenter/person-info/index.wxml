@@ -1,12 +1,32 @@
 <view class="person-info">
-  <t-cell-group>
-    <t-cell title="头像" center="{{true}}" data-type="avatarUrl" bind:click="onClickCell" arrow t-class-left="order-group__left">
-      <t-image slot="note" src="{{personInfo.avatarUrl}}" t-class="avatarUrl" mode="aspectFill" />
-    </t-cell>
-    <t-cell title="昵称" arrow note="{{personInfo.nickName}}" data-type="name" bind:click="onClickCell" t-class="t-cell-class" t-class-left="order-group__left" />
-    <t-cell title="性别" arrow note="{{genderMap[personInfo.gender]}}" data-type="gender" bind:click="onClickCell" t-class="t-cell-class" t-class-left="order-group__left" />
-    <t-cell bordered="{{false}}" title="手机号" arrow note="{{personInfo.phoneNumber ? personInfo.phoneNumber : '去绑定手机号'}}" data-type="phoneNumber" bind:click="onClickCell" t-class="t-cell-class" t-class-left="order-group__left" />
-  </t-cell-group>
+  <!-- <t-cell-group>
+
+    <t-cell title="昵称" arrow note="{{personInfo.username}}" data-type="username" bind:click="onClickCell" t-class="t-cell-class" t-class-left="order-group__left" />
+    <t-cell bordered="{{false}}" title="手机号" arrow note="{{personInfo.phone}}" data-type="phone" bind:click="onClickCell" t-class="t-cell-class" t-class-left="order-group__left" />
+    <t-cell title="邮箱" arrow note="{{personInfo.email}}" data-type="email" bind:click="onClickCell" t-class="t-cell-class" t-class-left="order-group__left" />
+    <t-cell title="密码" arrow note="{{personInfo.password}}" data-type="password" bind:click="onClickCell" t-class="t-cell-class" t-class-left="order-group__left" clearable />
+  </t-cell-group> -->
+  <form class="form-content">
+    <t-cell-group>
+      <!-- <t-cell title="头像" center="{{true}}" data-type="avatar" bind:click="onClickCell" arrow t-class-left="order-group__left">
+        <t-image slot="note" src="{{userInfo.avatar}}" t-class="avatarUrl" mode="aspectFill" />
+      </t-cell> -->
+      <t-cell class="form-cell" t-class-title="t-cell-title" title="姓名" t-class-note="t-cell-note">
+        <t-input class="t-input" slot="note" t-class="field-text" borderless data-item="username" maxlength="20" type="text" value="{{userInfo.username}}" placeholder="请输入姓名" bind:change="onInputValue" />
+      </t-cell>
+      <t-cell class="form-cell" t-class-title="t-cell-title" title="手机号">
+        <t-input slot="note" class="t-input" t-class="field-text" borderless type="number" value="{{userInfo.phone}}" maxlength="11" placeholder="手机号" bind:change="onInputValue" data-item="phone" />
+      </t-cell>
+      <t-cell class="form-cell" t-class-title="t-cell-title" title="邮箱">
+        <t-input slot="note" class="t-input" t-class="field-text" borderless type="text" value="{{userInfo.email}}" maxlength="11" placeholder="请输入邮箱" bind:change="onInputValue" data-item="email" />
+      </t-cell>
+      <t-cell class="form-cell" t-class-title="t-cell-title" title="邮箱">
+        <t-input slot="note" class="t-input" t-class="field-text" borderless type="password" value="{{userInfo.password}}" maxlength="11" placeholder="请输入密码" bind:change="onInputValue" data-item="password" clearable="{{true}}" />
+      </t-cell>
+    </t-cell-group>
+    <view class="submit">
+      <t-button shape="round" block bind:tap="formSubmit" style="width: 85%;"> 修改 </t-button>
+    </view>
+  </form>
+  <t-toast id="t-toast" />
 </view>
-<t-select-picker show="{{typeVisible}}" picker-options="{{pickerOptions}}" title="选择性别" value="{{personInfo.gender}}" bind:confirm="onConfirm" bind:close="onClose" />
-<t-toast id="t-toast" />

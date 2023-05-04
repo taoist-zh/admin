@@ -2,13 +2,15 @@ import {
   fetchUserCenter
 } from '../../services/usercenter/fetchUsercenter';
 import Toast from 'tdesign-miniprogram/toast/index';
-
-const menuData = [{
-    title: '用户管理',
-    tit: '',
-    url: '',
-    type: 'userlist',
-  },
+var userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+var menuDatalist = userInfo.role == "admin" ? [{
+  title: '用户管理',
+  tit: '',
+  url: '',
+  type: 'userlist',
+}] : []
+const menuData = [
+  ...menuDatalist,
   {
     title: '个人信息',
     tit: '',
@@ -18,8 +20,7 @@ const menuData = [{
 
 
 ];
-
-const orderTagInfos = [{
+var orderTagInfosItem = userInfo.role == "admin" ? [{
     title: '待审核',
     iconName: 'wallet',
     orderNum: 0,
@@ -28,45 +29,50 @@ const orderTagInfos = [{
   },
   {
     title: '已审核',
-    iconName: 'deliver',
-    orderNum: 0,
-    tabType: 10,
-    status: 1,
-  },
-  {
-    title: '待收货',
     iconName: 'package',
     orderNum: 0,
     tabType: 40,
     status: 1,
   },
   {
-    title: '已审核',
+    title: '已拒绝',
     iconName: 'comment',
     orderNum: 0,
     tabType: 60,
     status: 1,
   },
-  // {
-  //   title: '退款/售后',
-  //   iconName: 'exchang',
-  //   orderNum: 0,
-  //   tabType: 0,
-  //   status: 1,
-  // },
+] : [{
+    title: '待批复',
+    iconName: 'wallet',
+    orderNum: 0,
+    tabType: 5,
+    status: 1,
+  },
+  {
+    title: '已批复',
+    iconName: 'package',
+    orderNum: 0,
+    tabType: 40,
+    status: 1,
+  },
+  {
+    title: '已驳回',
+    iconName: 'comment',
+    orderNum: 0,
+    tabType: 60,
+    status: 1,
+  },
 ];
+const orderTagInfos = orderTagInfosItem;
 
 const getDefaultData = () => ({
-  showMakePhone: false,
-  userInfo: {
-    avatarUrl: '',
-    nickName: '正在登录...',
-    phoneNumber: '',
-  },
+  // showMakePhone: false,
+  userInfo: userInfo,
   menuData,
   orderTagInfos,
-  customerServiceInfo: {},
-  currAuthStep: 1,
+  // customerServiceInfo: {},
+  // currAuthStep: 1,
+
   showKefu: true,
   versionNo: '',
 });
@@ -74,9 +80,7 @@ const getDefaultData = () => ({
 Page({
   data: getDefaultData(),
 
-  onLoad() {
-    this.getVersionInfo();
-  },
+  onLoad() {},
 
   onShow() {
     this.getTabBar().init();
@@ -87,42 +91,11 @@ Page({
   },
 
   init() {
-    this.fetUseriInfoHandle();
+  
+
   },
 
-  fetUseriInfoHandle() {
-    fetchUserCenter().then(
 
-      ({
-        userInfo,
-        countsData,
-        orderTagInfos: orderInfo,
-        customerServiceInfo,
-      }) => {
-        // eslint-disable-next-line no-unused-expressions
-        menuData?.[0].forEach((v) => {
-          countsData.forEach((counts) => {
-            if (counts.type === v.type) {
-              // eslint-disable-next-line no-param-reassign
-              v.tit = counts.num;
-            }
-          });
-        });
-        const info = orderTagInfos.map((v, index) => ({
-          ...v,
-          ...orderInfo[index],
-        }));
-        this.setData({
-          userInfo,
-          menuData,
-          orderTagInfos: info,
-          customerServiceInfo,
-          currAuthStep: 2,
-        });
-        wx.stopPullDownRefresh();
-      },
-    );
-  },
 
   onClickCell({
     currentTarget
@@ -146,12 +119,6 @@ Page({
 
 
       }
-      // case 'coupon': {
-      //   wx.navigateTo({
-      //     url: '/pages/coupon/coupon-list/index'
-      //   });
-      //   break;
-      // }
       default: {
         Toast({
           context: this,
@@ -170,11 +137,11 @@ Page({
 
     if (status === 0) {
       wx.navigateTo({
-        url: '/pages/order/after-service-list/index'
+        url: '/pages/coupon/coupon-list/index'
       });
     } else {
       wx.navigateTo({
-        url: `/pages/order/order-list/index?status=${status}`
+        url: `'/pages/coupon/coupon-list/index'`
       });
     }
   },
@@ -184,25 +151,6 @@ Page({
       url: '/pages/coupon/coupon-list/index'
     });
   },
-
-  openMakePhone() {
-    this.setData({
-      showMakePhone: true
-    });
-  },
-
-  closeMakePhone() {
-    this.setData({
-      showMakePhone: false
-    });
-  },
-
-  call() {
-    wx.makePhoneCall({
-      phoneNumber: this.data.customerServiceInfo.servicePhone,
-    });
-  },
-
   gotoUserEditPage() {
     const {
       currAuthStep
@@ -216,14 +164,5 @@ Page({
     }
   },
 
-  getVersionInfo() {
-    const versionInfo = wx.getAccountInfoSync();
-    const {
-      version,
-      envVersion = __wxConfig
-    } = versionInfo.miniProgram;
-    this.setData({
-      versionNo: envVersion === 'release' ? version : envVersion,
-    });
-  },
+
 });
