@@ -50,7 +50,7 @@ Page({
               id: res.data.data[0].id,
               username: res.data.data[0].username,
               email: res.data.data[0].email,
-              password: res.data.data[0].password,
+              password: "",
               phone: res.data.data[0].phone,
             }
           })

@@ -41,6 +41,9 @@ export function updateUserInfo(dto) {
     // return mockFetchHome();
   } else {
     console.log(dto)
+    if (dto.password == "") {
+      delete dto.password
+    }
     return http({
       url: '/user/update',
       method: "put",
@@ -83,6 +86,9 @@ export function editUser(dto) {
   if (config.useMock) {
     // return mockFetchHome();
   } else {
+    if (dto.password == "") {
+      delete dto.password
+    }
     console.log(dto)
     return http({
       url: '/user',

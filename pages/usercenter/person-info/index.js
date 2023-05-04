@@ -24,12 +24,13 @@ Page({
   },
   init(userInfo, fresh) {
     delete userInfo.token
+    userInfo.password = ""
     this.setData({
       userInfo: userInfo
     })
   },
   formSubmit() {
-    console.log("baocun")
+    console.log("baocun", this.data.userInfo)
     editUser(this.data.userInfo).then((res) => {
       console.log(res)
       if (res.data.code == 200) {
@@ -49,7 +50,19 @@ Page({
     })
 
   },
+  onInputValue(e) {
+    const {
+      value = ''
+    } = e.detail;
+    console.log(e)
+    const {
+      item
+    } = e.currentTarget.dataset
+    this.setData({
+      [`userInfo.${item}`]: value,
+    });
 
+  },
 
 
   async toModifyAvatar() {
