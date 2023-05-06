@@ -19,6 +19,7 @@ Page({
   },
   onLoad() {
     var userInfo = wx.getStorageSync('userInfo')
+    console.log(userInfo)
     userInfo = JSON.parse(userInfo)
     this.init(userInfo, false);
   },
@@ -39,6 +40,18 @@ Page({
           selector: '#t-toast',
           message: res.data.message,
         });
+        var userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+        userInfo = {
+          ...userInfo,
+          ...this.data.userInfo
+        }
+        wx.setStorageSync('userInfo', JSON.stringify(userInfo))
+        setTimeout(() => {
+
+          wx.switchTab({
+            url: '/pages/usercenter/index',
+          });
+        }, 2000)
       } else {
         Toast({
           context: this,
