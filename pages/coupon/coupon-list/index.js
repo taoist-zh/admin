@@ -40,22 +40,30 @@ Page({
   },
 
   onLoad() {
-    // this.setData({
-    //   status: 3
-    // })
-    // let status = wx.getStorageSync('applyStatus')
+    let status = wx.getStorageSync('applyStatus')
     let userInfo = wx.getStorageSync('userInfo')
     userInfo = JSON.parse(userInfo)
-    this.setData({
-      role: userInfo.role,
-      id: userInfo.id,
-      // status: status
-    })
+    console.log(status, 'statusstatusstatusstatus')
+    if (!!status) {
+      this.setData({
+        role: userInfo.role,
+        id: userInfo.id,
+        status: status
+      })
+    } else {
+      this.setData({
+        role: userInfo.role,
+        id: userInfo.id,
+        // status: status
+      })
+    }
+
     // console.log(this.tabChange)
 
     this.init();
   },
   onShow() {
+    this.onLoad()
     this.getTabBar().init();
   },
   init() {

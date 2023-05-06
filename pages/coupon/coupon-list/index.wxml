@@ -1,4 +1,4 @@
-<t-tabs defaultValue="{{status}}" bind:change="tabChange" tabList="{{role=='admin'?list2:list1}}" t-class="tabs-external__inner" t-class-item="tabs-external__item" t-class-active="tabs-external__active" t-class-track="tabs-external__track">
+<t-tabs defaultValue="{{status}}" bind:change="tabChange" tabList="{{role=='admin'?list2:list1}}" t-class="tabs-external__inner" t-class-item="tabs-external__item" t-class-active="tabs-external__active" t-class-track="tabs-external__track" value="{{status}}">
   <t-tab-panel wx:for="{{role=='admin'?list2:list1}}" wx:for-index="index" wx:for-item="tab" wx:key="key" label="{{tab.text}}" value="{{tab.key}}" />
 </t-tabs>
 <view class="coupon-list-wrap">
