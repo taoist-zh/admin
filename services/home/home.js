@@ -156,7 +156,7 @@ export function delDevice(id) {
   if (config.useMock) {
     // return mockFetchHome();
   } else {
-    console.log(dto)
+    // console.log(dto)
     return http({
       url: '/device',
       method: "delete",

@@ -91,6 +91,12 @@ Page({
         selector: '#t-toast',
         message: '两次密码不一致',
       });
+    } else if (!this.data.userName || !this.data.confirmPassWord || !this.data.password) {
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '用户名密码不能为空',
+      });
     } else {
       handleRegister({
         username: this.data.userName,

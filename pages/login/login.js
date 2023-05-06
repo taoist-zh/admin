@@ -88,31 +88,40 @@ Page({
   login() {
     console.log(this.data.userName)
     console.log(this.data.passWord)
-    handleLogin({
-      username: this.data.userName,
-      password: this.data.passWord
-    }).then((res) => {
-      if (res.data.code == 200) {
-        Toast({
-          context: this,
-          selector: '#t-toast',
-          message: '登陆成功',
-        });
-        wx.setStorageSync("token", res.data.data.token)
-        wx.setStorageSync("userInfo", JSON.stringify(res.data.data.userInfo))
-        setTimeout(() => {
-          wx.switchTab({
-            url: "/pages/home/home"
-          })
-        }, 1000)
-      } else {
-        Toast({
-          context: this,
-          selector: '#t-toast',
-          message: '用户名或密码错误',
-        });
-      }
-    })
+    if (!this.data.userName.trim() || !this.data.passWord.trim()) {
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '用户名｜密码不能为空',
+      });
+    } else {
+      handleLogin({
+        username: this.data.userName,
+        password: this.data.passWord
+      }).then((res) => {
+        if (res.data.code == 200) {
+          Toast({
+            context: this,
+            selector: '#t-toast',
+            message: '登陆成功',
+          });
+          wx.setStorageSync("token", res.data.data.token)
+          wx.setStorageSync("userInfo", JSON.stringify(res.data.data.userInfo))
+          setTimeout(() => {
+            wx.switchTab({
+              url: "/pages/home/home"
+            })
+          }, 1000)
+        } else {
+          Toast({
+            context: this,
+            selector: '#t-toast',
+            message: '用户名或密码错误',
+          });
+        }
+      })
+    }
+
   },
   goRegister() {
     wx.navigateTo({

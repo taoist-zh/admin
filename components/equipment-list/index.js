@@ -77,7 +77,7 @@ Component({
         item
       });
     },
-    handleDel() {
+    handleDel(e) {
       const {
         id
       } = e.currentTarget.dataset;

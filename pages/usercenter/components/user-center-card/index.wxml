@@ -4,7 +4,7 @@
   <!-- 已登录且已经授权用户信息的情况 -->
   <block>
     <view class="user-center-card__header" bind:tap="gotoUserEditPage">
-      <t-avatar t-class="avatar" mode="aspectFill" class="user-center-card__header__avatar" image="{{userInfo.avatar || defaultAvatarUrl}}" />
+      <!-- <t-avatar t-class="avatar" mode="aspectFill" class="user-center-card__header__avatar" image="{{userInfo.avatar || defaultAvatarUrl}}" /> -->
       <view class="user-center-card__header__name">{{userInfo.username || '默认名称'}}</view>
     </view>
   </block>
