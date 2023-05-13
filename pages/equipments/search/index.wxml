@@ -10,7 +10,7 @@
       </view>
       <view class="search-content">
         <view class="search-item" hover-class="hover-history-item" wx:for="{{historyWords}}" bind:tap="handleHistoryTap" bindlongpress="deleteCurr" data-index="{{index}}" wx:key="*this">
-          {{item}}
+          {{item }}
         </view>
       </view>
     </view>

@@ -6,10 +6,13 @@
     <filter-popup show="{{show}}" slot="filterPopup" bind:showFilterPopupClose="showFilterPopupClose" bind:reset="reset" bind:confirm="confirm">
       <view class="price-container" slot="filterSlot">
         <view class="price-between">属性</view>
-        <view class="price-ipts-wrap">
-          <t-input type="number" t-class="price-ipt" t-class-input="t-class-input" placeholder="属性名" value="{{attrName}}" bindchange="onAttrNameAction" />
+        <view class="price-ipts-wrap" wx:for="{{attrList}}" wx:key="index">
+          <t-input type="number" t-class="price-ipt" t-class-input="t-class-input" placeholder="属性名" value="{{item.attrName}}" bindchange="onAttrNameAction" data-index="{{index}}" />
           <view class="price-divided">-</view>
-          <t-input type="number" t-class="price-ipt" t-class-input="t-class-input" placeholder="属性值" value="{{attrVal}}" bindchange="onAttrValAction" />
+          <t-input type="number" t-class="price-ipt" t-class-input="t-class-input" placeholder="属性值" value="{{item.attrVal}}" bindchange="onAttrValAction" data-index="{{index}}" />
+        </view>
+        <view style="width: 90%;margin:10rpx auto ; ">
+          <button style="background: blue;color: #fff;" bindtap="addAttr">增加</button>
         </view>
       </view>
     </filter-popup>

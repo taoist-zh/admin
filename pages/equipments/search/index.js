@@ -119,7 +119,11 @@ Page({
     const {
       value
     } = e.detail;
-
+    console.log(value)
+    this.setData({
+      historyWords: [...this.data.historyWords, value]
+    })
+    console.log(this.data.historyWords)
     if (value === 0) return;
     wx.navigateTo({
       url: `/pages/equipments/result/index?searchValue=${value}`,

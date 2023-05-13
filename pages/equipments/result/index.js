@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import {
-  getSearchResult
-} from '../../../services/equipment/fetchSearchResult';
+  getDeviceLike
+} from '../../../services/home/home';
 import Toast from 'tdesign-miniprogram/toast/index';
 
 
@@ -10,6 +10,10 @@ Page({
     equipmentsList: [],
     attrName: '',
     attrVal: '',
+    attrList: [{
+      attrName: '',
+      attrVal: '',
+    }],
     hasLoaded: false,
     keywords: '',
     loadMoreStatus: 0,
@@ -73,11 +77,13 @@ Page({
       loading: true,
     });
     try {
-      const result = await getSearchResult(params);
-      if (result.code == '1000') {
+      console.log(params, 'pa')
+      const result = await getDeviceLike(params);
+      console.log(result, 'getDeviceLike')
+      if (result.data.code == '200') {
         let data = result.data;
         if (data.length == 0) {
-          this.total = totalCount;
+          this.total = data.length;
 
           this.setData({
             emptyInfo: {
@@ -91,7 +97,7 @@ Page({
           return;
         }
         this.setData({
-          equipmentsList: data,
+          equipmentsList: data.data,
 
         });
       } else {
@@ -187,33 +193,88 @@ Page({
     const {
       value
     } = e.detail;
-    this.setData({
-      attrName: value
-    });
+    const {
+      index
+    } = e.currentTarget.dataset
+    console.log(e)
+    this.data.attrList[index].attrName = value
+
+
   },
 
   onAttrValAction(e) {
     const {
       value
     } = e.detail;
-    this.setData({
-      attrVal: value
-    });
+    const {
+      index
+    } = e.currentTarget.dataset
+    console.log(e)
+    this.data.attrList[index].attrVal = value
   },
 
   reset() {
     this.setData({
-      attrName: '',
-      attrVal: ''
+      attrList: [{
+        attrName: '',
+        attrVal: '',
+      }]
     });
   },
 
-  confirm() {
-    const {
-      attrName,
-      attrVal
-    } = this.data;
+  async confirm() {
+    console.log(this.data.attrList, 'arrtlist')
+    let attrString = {}
+    this.data.attrList.forEach((item, index) => {
+      // let endTag = index == this.data.attrList.length - 1 ? "" : ","
+      attrString[item.attrName] = item.attrVal
+      // attrString += item.attrName + ":" + item.attrVal + endTag
+    })
+    attrString = JSON.stringify(attrString)
+    attrString = attrString.substr(1, attrString.length - 2)
+    console.log(attrString)
 
+    let result = await getDeviceLike({
+      attr: attrString,
+      name: ""
+    });
+    if (result.data.code == '200') {
+      let data = result.data;
+      if (data.length == 0) {
+        this.total = data.length;
+
+        this.setData({
+          emptyInfo: {
+            tip: '抱歉，未找到相关设备',
+          },
+          hasLoaded: true,
+          loadMoreStatus: 0,
+          loading: false,
+          equipmentsList: [],
+        });
+        return;
+      }
+      this.setData({
+        equipmentsList: data.data,
+
+      });
+    } else {
+      this.setData({
+        loading: false,
+      });
+      wx.showToast({
+        title: '查询失败，请稍候重试',
+      });
+    }
     //按筛选条件请求数据
+
   },
+  addAttr() {
+    this.setData({
+      attrList: [...this.data.attrList, {
+        attrName: '',
+        attrVal: '',
+      }]
+    })
+  }
 });

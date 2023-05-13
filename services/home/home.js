@@ -182,3 +182,20 @@ export function getDeviceOfUser(id) {
     })
   }
 }
+
+//模糊搜索设备名
+export function getDeviceLike(params) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    // console.log(dto)
+    return http({
+      url: '/device/like',
+      method: "get",
+      data: {
+        name: params.keyword ? params.keyword : "",
+        attr: params.attr ? params.attr : "",
+      }
+    })
+  }
+}
