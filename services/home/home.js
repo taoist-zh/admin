@@ -166,3 +166,19 @@ export function delDevice(id) {
     })
   }
 }
+
+//获取设备当前使用人
+export function getDeviceOfUser(id) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    // console.log(dto)
+    return http({
+      url: '/device/user',
+      method: "get",
+      data: {
+        id: id
+      }
+    })
+  }
+}

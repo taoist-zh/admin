@@ -32,7 +32,7 @@
     </view>
     <view class="main-container-card">
       <view class="user">
-        <text class="user-title">当前所属人</text><text class="user-name">{{detail.status==0?"无":"默认"}}</text>
+        <text class="user-title">当前所属人</text><text class="user-name">{{detail.status==0?"无":username}}</text>
       </view>
     </view>
     <view class="main-container-card">
@@ -73,7 +73,7 @@
   <view class="main-action">
 
     <view wx:if="{{role=='student'}}">
-      <t-button theme="primary" size="extra-small" bindtap="applyUse" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{detail.status==0}}">申请使用</t-button>
+      <t-button theme="primary" size="extra-small" bindtap="applyUse" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{detail.status==0||detail.status==5}}">申请使用</t-button>
       <t-button theme="primary" size="extra-small" bindtap="applyBack" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请归还</t-button>
       <t-button theme="primary" size="extra-small" bindtap="applyMaintenance" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请维修</t-button>
       <t-button theme="primary" size="extra-small" bindtap="applyUnserviceable" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请报废</t-button>

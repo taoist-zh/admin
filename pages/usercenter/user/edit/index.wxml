@@ -16,7 +16,7 @@
         <t-cell class="form-cell" t-class-title="t-cell-title" title="邮箱">
           <t-input slot="note" class="t-input" t-class="field-text" borderless type="number" value="{{userInfo.email}}" maxlength="11" placeholder="请输入邮箱" bind:change="onInputValue" data-item="email" />
         </t-cell>
-        <t-cell class="form-cell" t-class-title="t-cell-title" title="邮箱">
+        <t-cell class="form-cell" t-class-title="t-cell-title" title="密码">
           <t-input slot="note" class="t-input" t-class="field-text" borderless type="number" value="{{userInfo.password}}" maxlength="11" placeholder="请输入密码" bind:change="onInputValue" data-item="password" clearable="{{true}}" />
         </t-cell>
       </t-cell-group>

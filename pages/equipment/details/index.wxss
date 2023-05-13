@@ -151,6 +151,7 @@
   /* text-align: center; */
 }
 
-.record-item1{
+.record-item1 {
+  width: 25%;
   text-align: right;
 }

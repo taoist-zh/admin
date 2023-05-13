@@ -4,6 +4,9 @@ import {
   addAction,
   getrecord
 } from "../../../services/action/action"
+import {
+  getDeviceOfUser
+} from "../../../services/home/home"
 Page({
 
   /**
@@ -38,7 +41,8 @@ Page({
     this.setData({
       detail: data,
       role: userIfo.role,
-      userId: userIfo.id
+      userId: userIfo.id,
+      username: ""
     })
     this.init(data)
   },
@@ -93,6 +97,15 @@ Page({
   },
   init(data) {
     //查询当前使用人
+    getDeviceOfUser(data.id).then((res) => {
+      console.log("使用者", res)
+      if (res.data.data[0].username) {
+        console.log()
+        this.setData({
+          username: res.data.data[0].username
+        })
+      }
+    })
     //查询使用记录
     getrecord(data.id).then((res) => {
       console.log(res.data.data, "使用记录")
@@ -101,7 +114,7 @@ Page({
         return {
           ...item,
           startTime: item.startTime.substr(0, 10),
-          endTime: item.endTime.substr(0, 10)
+          endTime: item.endTime != null ? item.endTime.substr(0, 10) : ""
         }
       })
       this.setData({
@@ -166,6 +179,7 @@ Page({
   },
   apply(dto) {
     addAction(dto).then((res) => {
+      console.log(res.data.message)
       if (res.data.code == 200) {
         Toast({
           context: this,
@@ -176,7 +190,7 @@ Page({
         Toast({
           context: this,
           selector: '#t-toast',
-          message: res.data.message,
+          message: res.data.message
         });
       }
     })

@@ -28,8 +28,8 @@
           {{item.description}}
         </view>
         <view class="card-action">
-          <view>用</view>
-          <view>申请使用</view>
+          <view>详情</view>
+          <view>查看详情</view>
         </view>
         <view wx:if="{{role=='admin'}}">
           <t-button size="extra-small" theme="primary" style="margin: 10rpx;" bindtap="handleUpdate" data-item="{{item}}">修改</t-button>
