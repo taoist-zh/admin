@@ -23,20 +23,24 @@ Page({
   },
 
   async queryHistory() {
-    try {
-      const data = await getSearchHistory();
-      const code = 'Success';
-      if (String(code).toUpperCase() === 'SUCCESS') {
-        const {
-          historyWords = []
-        } = data;
-        this.setData({
-          historyWords,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
+
+    this.setData({
+      historyWords: wx.getStorageSync('historyWords')
+    })
+    // try {
+    //   const data = await getSearchHistory();
+    //   const code = 'Success';
+    //   if (String(code).toUpperCase() === 'SUCCESS') {
+    //     const {
+    //       historyWords = []
+    //     } = data;
+    //     this.setData({
+    //       historyWords,
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
   },
 
 
@@ -80,6 +84,7 @@ Page({
       },
       dialogShow: true,
     });
+    wx.setStorageSync('historyWords', [])
   },
 
   deleteCurr(e) {
@@ -120,6 +125,8 @@ Page({
       value
     } = e.detail;
     console.log(value)
+    let historyWords = wx.getStorageSync('historyWords')
+    wx.setStorageSync('historyWords', [...historyWords, value])
     this.setData({
       historyWords: [...this.data.historyWords, value]
     })
