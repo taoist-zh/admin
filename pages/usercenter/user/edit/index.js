@@ -99,7 +99,7 @@ Page({
     if (this.data.type == "add") {
       let params = JSON.parse(JSON.stringify(this.data.userInfo))
       delete params.id
-      editUser(params).then((res) => {
+      addUser(params).then((res) => {
         console.log(res)
         if (res.data.code == 200) {
           Toast({
@@ -107,6 +107,11 @@ Page({
             selector: '#t-toast',
             message: res.data.message,
           });
+          setTimeout(() => {
+            wx.navigateTo({
+              url: '/pages/usercenter/user/list/index',
+            })
+          }, 1500)
         } else {
           Toast({
             context: this,
