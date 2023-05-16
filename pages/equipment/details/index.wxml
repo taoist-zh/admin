@@ -74,23 +74,14 @@
 
     <view wx:if="{{role=='student'}}">
       <t-button theme="primary" size="extra-small" bindtap="applyUse" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{detail.status==0||detail.status==5}}">申请使用</t-button>
-      <t-button theme="primary" size="extra-small" bindtap="applyBack" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请归还</t-button>
-      <t-button theme="primary" size="extra-small" bindtap="applyMaintenance" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请维修</t-button>
-      <t-button theme="primary" size="extra-small" bindtap="applyUnserviceable" data-deviceId="{{detail.id}}" data-userId="{{userId}}">申请报废</t-button>
+      <t-button theme="primary" size="extra-small" bindtap="applyBack" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{useforUserId==userId}}">申请归还</t-button>
+      <t-button theme="primary" size="extra-small" bindtap="applyMaintenance" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{useforUserId==userId}}">申请维修</t-button>
+      <t-button theme="primary" size="extra-small" bindtap="applyUnserviceable" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{useforUserId==userId}}">申请报废</t-button>
     </view>
-    <!-- <view wx:if="{{role=='admin'}}">
-      <text class="applyUser">
-        <text>申请人: </text>
-        <text>张三</text>
-      </text>
-      <text class="applyStatus">
-        <text>申请: </text>
-        <text>维修</text>
-      </text>
-      <t-button theme="primary" size="small" bindtap="passApply">通过</t-button>
-      <t-button theme="danger" size="small" bindtap="rejectApply">驳回</t-button>
+    <view wx:if="{{role=='admin'}}">
+      <t-button theme="primary" size="extra-small" bindtap="maintenanceOff" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{detail.status==2}}">维修完成</t-button>
 
-    </view> -->
+    </view>
   </view>
   <t-toast id="t-toast" />
 </view>

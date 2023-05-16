@@ -5,7 +5,8 @@ import {
   getrecord
 } from "../../../services/action/action"
 import {
-  getDeviceOfUser
+  getDeviceOfUser,
+  updateDevice
 } from "../../../services/home/home"
 Page({
 
@@ -17,6 +18,7 @@ Page({
     detail: {
       name: "默认名称"
     },
+    useforUserId: "",
     useRecord: [],
     description: "",
     //状态枚举
@@ -99,10 +101,12 @@ Page({
     //查询当前使用人
     getDeviceOfUser(data.id).then((res) => {
       console.log("使用者", res)
+
       if (res.data.data[0].username) {
         console.log()
         this.setData({
-          username: res.data.data[0].username
+          username: res.data.data[0].username,
+          useforUserId: res.data.data[0].id,
         })
       }
     })
@@ -193,6 +197,30 @@ Page({
           message: res.data.message
         });
       }
+    })
+  },
+  maintenanceOff() {
+    //维修完成
+    let dto = {
+      "id": this.data.detail.id,
+      "status": 0,
+    }
+    console.log("维修完成")
+    updateDevice(dto).then((res) => {
+      if (res.data.code == 200) {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      } else {
+        Toast({
+          context: this,
+          selector: '#t-toast',
+          message: res.data.message,
+        });
+      }
+
     })
   }
 })
