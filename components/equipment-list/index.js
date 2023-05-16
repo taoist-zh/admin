@@ -64,7 +64,7 @@ Component({
         item
       } = e.currentTarget.dataset;
       let data = JSON.stringify(e.currentTarget.dataset.item);
-      console.log("去详情页", id)
+      console.log("去详情页", item)
       wx.navigateTo({
         url: '/pages/equipment/details/index?data=' + data,
       })

@@ -36,7 +36,13 @@ Page({
   onLoad(options) {
     console.log(options, "传参数")
     let data = JSON.parse(options.data)
-    data.attr = JSON.parse(data.attr)
+    console.log(data, "传参数")
+    if (data.attr.indexOf("{") != -1) {
+      data.attr = JSON.parse(data.attr)
+    } else {
+      data.attr = {}
+    }
+
     let userIfo = wx.getStorageSync('userInfo')
 
     userIfo = JSON.parse(userIfo)
@@ -102,7 +108,7 @@ Page({
     getDeviceOfUser(data.id).then((res) => {
       console.log("使用者", res)
 
-      if (res.data.data[0].username) {
+      if (res.data.data.length > 0 && res.data.data[0]?.username) {
         console.log()
         this.setData({
           username: res.data.data[0].username,
