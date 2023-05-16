@@ -54,7 +54,6 @@ Component({
   data: {
     theme: 'primary',
   },
-
   observers: {
     status: function (value) {
       let theme = 'primary';

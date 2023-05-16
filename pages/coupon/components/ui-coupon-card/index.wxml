@@ -1,15 +1,17 @@
-<wxs module="tools">
-  function isBigValue(value) {
-    var values = (value + '').split('.');
-    if (values[1] && values[0].length >= 3) return true;
-    else return false
-  }
+<wxs module="tool">
+  module.exports = {
+    getStatus: function (status) {
 
-  function getBigValues(value) {
-    return value.split('.');
-  }
+      var enumList = {
+        "1": "使用",
+        "2": "归还",
+        "3": "维修",
+        "4": "报废",
+      }
 
-  module.exports = { isBigValue: isBigValue, getBigValues: getBigValues };
+      return enumList[status.toString()];
+    }
+  }
 </wxs>
 <view class="wr-coupon coupon-class theme-{{theme}}">
   <view class="wr-coupon__left">
@@ -24,6 +26,9 @@
       <view class="coupon-time"><text>申请日期:</text><text>{{time}}</text></view>
       <view class="coupon-desc">
         <view><text>申请人:</text>{{username}}</view>
+      </view>
+      <view class="coupon-desc">
+        <view><text>申请类型:</text>{{tool.getStatus(applyType)}}</view>
       </view>
     </view>
     <view class="wr-coupon__right--oper">
