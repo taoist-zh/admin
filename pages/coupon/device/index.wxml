@@ -1,0 +1,20 @@
+<t-tabs defaultValue="{{status}}" bind:change="tabChange" tabList="{{list1}}" t-class="tabs-external__inner" t-class-item="tabs-external__item" t-class-active="tabs-external__active1" t-class-track="tabs-external__track" value="{{status}}">
+  <t-tab-panel wx:for="{{list1}}" wx:for-index="index" wx:for-item="tab" wx:key="key1" label="{{tab.text}}" value="{{tab.key}}" />
+</t-tabs>
+<view class="coupon-list-wrap">
+  <t-pull-down-refresh t-class-indicator="t-class-indicator" id="t-pull-down-refresh1" bind:refresh="onPullDownRefresh_" background="#fff">
+    <view class="coupon-list-item" wx:for="{{applyList}}" wx:key="index">
+      <coupon-card-device couponDTO="{{item}}" />
+    </view>
+  </t-pull-down-refresh>
+  <!-- <view class="coupon-list-item" wx:for="{{applyList}}" wx:key="index">
+    <coupon-card-device couponDTO="{{item}}" />
+    <text>{{item.name}}</text>
+  </view> -->
+  <view class="center-entry">
+    <view class="center-entry-btn" bind:tap="goHomeHandle">
+      <view>回到首页</view>
+      <t-icon name="chevron-right" color="#fa4126" size="40rpx" style="line-height: 28rpx;" />
+    </view>
+  </view>
+</view>

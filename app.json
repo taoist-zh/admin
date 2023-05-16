@@ -34,7 +34,8 @@
     "pages/usercenter/name-edit/index",
     "pages/equipment/list/list",
     "pages/equipment/details/index",
-    "pages/register/index"
+    "pages/register/index",
+    "pages/coupon/device/index"
   ],
   "tabBar": {
     "custom": true,

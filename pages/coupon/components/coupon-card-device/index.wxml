@@ -1,0 +1,32 @@
+<!-- <ui-coupon-card1 applyStatus="{{couponDTO.applyStatus || ''}}" applyType="{{couponDTO.applyType || ''}}" description="{{couponDTO.description || '0'}}" deviceId="{{couponDTO.deviceId || ''}}" id="{{couponDTO.id || ''}}" userId="{{couponDTO.userId || ''}}" time='{{couponDTO.time || ""}}' name='{{couponDTO.name || ""}}' username='{{couponDTO.username || ""}}' imgUrl='{{couponDTO.imgUrl || ""}}'>
+
+
+</ui-coupon-card1> -->
+<view>
+  <view class="wr-coupon coupon-class1 theme-{{theme}}">
+    <view class="wr-coupon__left">
+      <view class="img">
+        <image src="{{imgUrl}}" mode="" />
+      </view>
+
+    </view>
+    <view class="wr-coupon__right">
+      <view class="wr-coupon__right--title">
+        <text class="coupon-title">{{couponDTO.name}}</text>
+        <view class="coupon-time"><text>日期:</text><text>{{couponDTO.time}}</text></view>
+      </view>
+      <view class="wr-coupon__right--oper">
+        <view slot="operator" class="coupon-btn-slot">
+          <t-button t-class="coupon-btn-{{btnTheme}}" theme="primary" variant="outline" shape="round" size="extra-small" data-id="{{couponDTO.id}}" bindtap="godetail">设备详情
+          </t-button>
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <view>
+
+
+  </view>
+  <t-toast id="t-toast" />
+</view>

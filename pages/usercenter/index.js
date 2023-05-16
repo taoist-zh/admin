@@ -53,14 +53,14 @@ var orderTagInfosItem = userInfo.role == "admin" ? [{
     iconName: 'package',
     orderNum: 0,
     tabType: 40,
-    status: 1,
+    status: 2,
   },
   {
     title: '已报废',
     iconName: 'comment',
     orderNum: 0,
     tabType: 60,
-    status: 1,
+    status: 3,
   },
 ];
 const orderTagInfos = orderTagInfosItem;
@@ -135,24 +135,24 @@ Page({
 
   jumpNav(e) {
     const status = e.detail.status;
-
+    console.log(status, 'status')
     if (status == 1) {
-      wx.setStorageSync('applyStatus', 1);
-      wx.switchTab({
-        url: '/pages/coupon/coupon-list/index',
+      // wx.setStorageSync('applyStatus', 1);
+      wx.navigateTo({
+        url: '/pages/coupon/device/index?status=1',
 
       })
 
     } else if (status == 2) {
-      wx.setStorageSync('applyStatus', 2);
-      wx.switchTab({
-        url: '/pages/coupon/coupon-list/index',
+      // wx.setStorageSync('applyStatus', 2);
+      wx.navigateTo({
+        url: '/pages/coupon/device/index?status=2',
 
       })
     } else if (status == 3) {
-      wx.setStorageSync('applyStatus', 3);
-      wx.switchTab({
-        url: '/pages/coupon/coupon-list/index',
+      // wx.setStorageSync('applyStatus', 3);
+      wx.navigateTo({
+        url: '/pages/coupon/device/index?status=3',
 
       })
     }
@@ -160,7 +160,7 @@ Page({
 
   jumpAllOrder() {
     wx.navigateTo({
-      url: '/pages/coupon/coupon-list/index'
+      url: '/pages/coupon/device/index'
     });
   },
   gotoUserEditPage() {

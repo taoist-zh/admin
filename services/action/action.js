@@ -101,3 +101,16 @@ export function dealApply(id, type) {
   }
 
 }
+/** 获取个人数据 */
+export function getDeviceByuser(dto) {
+  if (config.useMock) {
+    // return mockFetchHome();
+  } else {
+    return http({
+      url: '/device/foruser',
+      params: dto,
+      method: "get",
+    })
+  }
+
+}
