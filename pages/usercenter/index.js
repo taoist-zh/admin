@@ -42,21 +42,21 @@ var orderTagInfosItem = userInfo.role == "admin" ? [{
     status: 3,
   },
 ] : [{
-    title: '待批复',
+    title: '使用中',
     iconName: 'wallet',
     orderNum: 0,
     tabType: 5,
     status: 1,
   },
   {
-    title: '已批复',
+    title: '维修中',
     iconName: 'package',
     orderNum: 0,
     tabType: 40,
     status: 1,
   },
   {
-    title: '已驳回',
+    title: '已报废',
     iconName: 'comment',
     orderNum: 0,
     tabType: 60,
@@ -72,6 +72,7 @@ const getDefaultData = () => ({
   orderTagInfos,
   // customerServiceInfo: {},
   // currAuthStep: 1,
+
 
   showKefu: true,
   versionNo: '',

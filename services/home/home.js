@@ -42,6 +42,10 @@ export function getHomeData(dto) {
   if (config.useMock) {
     return mockFetchHome();
   } else {
+    console.log(dto, 'getHomeData')
+    if (!dto.categorizeId) {
+      dto.categorizeId = ""
+    }
     return http({
       url: '/device',
       params: dto,

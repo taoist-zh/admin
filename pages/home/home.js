@@ -190,7 +190,7 @@ Page({
     this.setData({
       'product.value': "all",
     })
-
+    
     this.loadEquipment(false, this.data.typeId);
   },
 
