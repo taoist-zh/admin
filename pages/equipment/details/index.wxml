@@ -47,7 +47,7 @@
       </view>
 
     </view>
-    <view class="main-container-card records-main">
+    <!-- <view class="main-container-card records-main">
       <view class="records-title">
         <text>使用记录</text>
         <text>开始时间</text>
@@ -67,9 +67,9 @@
         <view class="attr-line" />
       </view>
 
-    </view>
+    </view> -->
   </view>
-  <t-textarea t-class="external-class" label="备注" placeholder="请输入申请备注信息" value="{{description}}" bindchange="onDesInput" />
+  <t-textarea t-class="external-class" label="备注" placeholder="请输入申请备注信息" value="{{description}}" bindchange="onDesInput" wx:if="{{role=='student'}}" />
   <view class="main-action">
 
     <view wx:if="{{role=='student'}}">

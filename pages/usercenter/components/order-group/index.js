@@ -10,11 +10,11 @@ Component({
     },
     title: {
       type: String,
-      value: '我的申请',
+      value: '我的设备',
     },
     desc: {
       type: String,
-      value: '全部申请',
+      value: '全部设备',
     },
     isTop: {
       type: Boolean,
