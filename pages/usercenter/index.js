@@ -49,7 +49,7 @@ var orderTagInfosItem = userInfo.role == "admin" ? [{
     status: 1,
   },
   {
-    title: '维修中',
+    title: '维修',
     iconName: 'package',
     orderNum: 0,
     tabType: 40,

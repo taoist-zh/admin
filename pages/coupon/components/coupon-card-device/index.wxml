@@ -6,7 +6,7 @@
   <view class="wr-coupon coupon-class1 theme-{{theme}}">
     <view class="wr-coupon__left">
       <view class="img">
-        <image src="{{imgUrl}}" mode="" />
+        <image src="{{couponDTO.imgUrl}}" mode="" />
       </view>
 
     </view>
