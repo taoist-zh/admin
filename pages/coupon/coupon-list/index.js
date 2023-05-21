@@ -1,7 +1,7 @@
 import {
   getRecord
 } from '../../../services/action/action';
-
+import Toast from 'tdesign-miniprogram/toast/index';
 Page({
   data: {
     id: "",
@@ -115,4 +115,13 @@ Page({
       },
     );
   },
+  toast(e) {
+    //刷新数据
+    this.fetchList(this.data.status);
+    Toast({
+      context: this,
+      selector: '#t-toast',
+      message: e.detail.value,
+    });
+  }
 });

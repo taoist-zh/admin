@@ -1,4 +1,7 @@
 // pages/equipment/details/index.js
+import {
+  set
+} from 'mobx-miniprogram';
 import Toast from 'tdesign-miniprogram/toast/index';
 import {
   addAction,
@@ -52,6 +55,7 @@ Page({
       userId: userIfo.id,
       username: ""
     })
+
     this.init(data)
   },
 
@@ -116,6 +120,7 @@ Page({
         })
       }
     })
+
     //查询使用记录
     getrecord(data.id).then((res) => {
       console.log(res.data.data, "使用记录")
@@ -196,6 +201,12 @@ Page({
           selector: '#t-toast',
           message: res.data.message,
         });
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/home/home',
+          })
+
+        }, 1000)
       } else {
         Toast({
           context: this,

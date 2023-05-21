@@ -58,16 +58,13 @@ Component({
       } = e.currentTarget.dataset;
       dealApply(id, 3).then((res) => {
         if (res.data.code == 200) {
-          Toast({
-            context: this,
-            selector: '#t-toast',
-            message: res.data.message,
+          console.log(res, 'res')
+          this.triggerEvent('toast', {
+            value: res.data.message
           });
         } else {
-          Toast({
-            context: this,
-            selector: '#t-toast',
-            message: res.data.message,
+          this.triggerEvent('toast', {
+            value: res.data.message
           });
         }
       })
@@ -79,16 +76,15 @@ Component({
       } = e.currentTarget.dataset;
       dealApply(id, 2).then((res) => {
         if (res.data.code == 200) {
-          Toast({
-            context: this,
-            selector: '#t-toast',
-            message: res.data.message,
+          console.log({
+            value: res.data.message
+          }, 'res')
+          this.triggerEvent('toast', {
+            value: res.data.message
           });
         } else {
-          Toast({
-            context: this,
-            selector: '#t-toast',
-            message: res.data.message,
+          this.triggerEvent('toast', {
+            value: res.data.message
           });
         }
       })
@@ -99,16 +95,13 @@ Component({
       } = e.currentTarget.dataset;
       dealApply(id, 1).then((res) => {
         if (res.data.code == 200) {
-          Toast({
-            context: this,
-            selector: '#t-toast',
-            message: res.data.message,
+          console.log(res, 'res')
+          this.triggerEvent('toast', {
+            value: res.data.message
           });
         } else {
-          Toast({
-            context: this,
-            selector: '#t-toast',
-            message: res.data.message,
+          this.triggerEvent('toast', {
+            value: res.data.message
           });
         }
       })

@@ -227,7 +227,12 @@ Page({
     let attrString = {}
     this.data.attrList.forEach((item, index) => {
       // let endTag = index == this.data.attrList.length - 1 ? "" : ","
-      attrString[item.attrName] = item.attrVal
+      if (this.data.attrList.length == 1 && !item.attrName && !item.attrVal) {
+        return
+      } else {
+        attrString[item.attrName] = item.attrVal
+      }
+
       // attrString += item.attrName + ":" + item.attrVal + endTag
     })
     attrString = JSON.stringify(attrString)
@@ -239,6 +244,9 @@ Page({
       name: ""
     });
     if (result.data.code == '200') {
+      this.setData({
+        show: false,
+      });
       let data = result.data;
       if (data.length == 0) {
         this.total = data.length;

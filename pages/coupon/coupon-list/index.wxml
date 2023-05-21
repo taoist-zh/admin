@@ -4,7 +4,7 @@
 <view class="coupon-list-wrap">
   <t-pull-down-refresh t-class-indicator="t-class-indicator" id="t-pull-down-refresh" bind:refresh="onPullDownRefresh_" background="#fff">
     <view class="coupon-list-item" wx:for="{{applyList}}" wx:key="key">
-      <coupon-card couponDTO="{{item}}" status="{{status}}" />
+      <coupon-card couponDTO="{{item}}" status="{{status}}" bind:toast="toast" />
     </view>
   </t-pull-down-refresh>
   <view class="center-entry">
@@ -13,4 +13,5 @@
       <t-icon name="chevron-right" color="#fa4126" size="40rpx" style="line-height: 28rpx;" />
     </view>
   </view>
+  <t-toast id="t-toast" />
 </view>

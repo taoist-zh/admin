@@ -11,5 +11,5 @@
     <t-button t-class="coupon-btn-{{btnTheme}}" theme="danger" variant="outline" shape="round" size="extra-small" bind:tap="applyAgain" wx:if="{{status==3}}" data-id="{{couponDTO.id}}">再次申请
     </t-button>
   </view>
-  <t-toast id="t-toast" />
+
 </ui-coupon-card>

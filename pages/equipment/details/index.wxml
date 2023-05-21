@@ -69,11 +69,10 @@
 
     </view> -->
   </view>
-  <t-textarea t-class="external-class" label="备注" placeholder="请输入申请备注信息" value="{{description}}" bindchange="onDesInput" wx:if="{{role=='student'}}" />
+  <t-textarea t-class="external-class" label="备注" placeholder="请输入申请备注信息" value="{{description}}" bindchange="onDesInput" wx:if="{{role=='student'&&detail.status!=3}}" />
   <view class="main-action">
-
-    <view wx:if="{{role=='student'}}">
-      <t-button theme="primary" size="extra-small" bindtap="applyUse" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{detail.status==0||detail.status==5}}">申请使用</t-button>
+    <view wx:if="{{role=='student'&&detail.status!=3}}">
+      <t-button theme="primary" size="extra-small" bindtap="applyUse" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{detail.status==0||detail.status==4}}">申请使用</t-button>
       <t-button theme="primary" size="extra-small" bindtap="applyBack" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{useforUserId==userId}}">申请归还</t-button>
       <t-button theme="primary" size="extra-small" bindtap="applyMaintenance" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{useforUserId==userId}}">申请维修</t-button>
       <t-button theme="primary" size="extra-small" bindtap="applyUnserviceable" data-deviceId="{{detail.id}}" data-userId="{{userId}}" wx:if="{{useforUserId==userId}}">申请报废</t-button>

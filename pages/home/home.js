@@ -190,7 +190,7 @@ Page({
     this.setData({
       'product.value': "all",
     })
-    
+
     this.loadEquipment(false, this.data.typeId);
   },
 
@@ -305,6 +305,10 @@ Page({
     updateHomeTagData(this.data.tabList[index]).then((res) => {
       console.log(res.data.code)
       if (res.data.code == 200) {
+        this.init(true);
+        this.setData({
+          addTagVisible: false,
+        })
         Toast({
           context: this,
           selector: '#t-toast',
@@ -328,6 +332,10 @@ Page({
     delHomeTagData(this.data.tabList[index]).then((res) => {
       console.log(res.data.code)
       if (res.data.code == 200) {
+        this.init(true);
+        this.setData({
+          addTagVisible: false,
+        })
         Toast({
           context: this,
           selector: '#t-toast',
@@ -393,9 +401,9 @@ Page({
 
         })
         setTimeout(() => {
-          that.setData({
-            addTagVisible: false
-
+          this.init(true);
+          this.setData({
+            addTagVisible: false,
           })
 
         }, 1000)
@@ -488,6 +496,8 @@ Page({
         this.setData({
           addDevicevisible: false
         })
+        this.init(true);
+
         Toast({
           context: this,
           selector: '#t-toast',
@@ -610,6 +620,7 @@ Page({
         this.setData({
           addDevicevisible: false
         })
+        this.init(true);
         Toast({
           context: this,
           selector: '#t-toast',
@@ -634,6 +645,7 @@ Page({
         this.setData({
           addDevicevisible: false
         })
+        this.init(true);
         Toast({
           context: this,
           selector: '#t-toast',

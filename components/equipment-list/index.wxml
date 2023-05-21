@@ -9,6 +9,7 @@
           "1": "使用中",
           "2": "维修中",
           "3": "已报废",
+          "4": "已存在申请",
         }
 
         return enumList[status.toString()];
