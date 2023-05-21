@@ -82,16 +82,16 @@ Page({
   },
   //登陆
   register() {
-    // console.log(this.data.userName)
-    // console.log(this.data.passWord)
-    // console.log(this.data.confirmPassWord)
+    console.log(this.data.userName)
+    console.log(this.data.passWord)
+    console.log(this.data.confirmPassWord)
     if (this.data.passWord != this.data.confirmPassWord) {
       Toast({
         context: this,
         selector: '#t-toast',
         message: '两次密码不一致',
       });
-    } else if (!this.data.userName || !this.data.confirmPassWord || !this.data.password) {
+    } else if (!this.data.userName || !this.data.confirmPassWord || !this.data.passWord) {
       Toast({
         context: this,
         selector: '#t-toast',
