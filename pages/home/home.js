@@ -583,12 +583,16 @@ Page({
       item
     } = e.detail;
     console.log(item, "传递的值")
-    let attr = JSON.parse(item.attr)
-    let attr1 = ""
-    Object.keys(attr).forEach((item, index) => {
-      let douhao = (index == (Object.keys(attr).length - 1)) ? "" : ","
-      attr1 += item + ":" + attr[item] + douhao
-    })
+    var attr1 = ""
+    if (item.attr.indexOf("{") != -1) {
+      let attr = JSON.parse(item.attr)
+
+      Object.keys(attr).forEach((item, index) => {
+        let douhao = (index == (Object.keys(attr).length - 1)) ? "" : ","
+        attr1 += item + ":" + attr[item] + douhao
+      })
+    }
+
     console.log(attr1)
     this.setData({
       isAddDevice: false,
